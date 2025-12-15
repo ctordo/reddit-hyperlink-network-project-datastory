@@ -6,21 +6,68 @@
 
 body {
   font-family: 'Georgia', serif;
-  background: linear-gradient(to bottom, #f5f5dc 0%, #e8e8d0 100%);
-  padding: 20px;
+  /* Fond table en bois */
+  background: 
+    linear-gradient(90deg, rgba(0,0,0,.03) 1px, transparent 1px),
+    linear-gradient(rgba(0,0,0,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,90,43,.4) 0%, rgba(101,67,33,.4) 100%);
+  background-size: 100px 100px, 100px 100px, 100% 100%;
+  background-color: #8B5A2B;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      #8B5A2B 0px,
+      #A0522D 40px,
+      #8B4513 80px,
+      #654321 120px,
+      #8B5A2B 160px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(101, 67, 33, 0.1) 0px,
+      transparent 2px,
+      transparent 4px
+    );
+  padding: 40px 20px;
+  min-height: 100vh;
 }
 
-/* Navigation fixe */
+/* Navigation fixe style post-it */
 .fixed-nav {
   position: fixed;
-  top: 20px;
-  right: 20px;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 15px 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  top: 30px;
+  right: 30px;
+  background: #feff9c;
+  background: linear-gradient(135deg, #feff9c 0%, #fef89a 100%);
+  padding: 20px 25px;
+  border-radius: 0 0 3px 3px;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.2),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.05);
   z-index: 1000;
-  max-width: 200px;
+  max-width: 220px;
+  transform: rotate(1deg);
+  transition: transform 0.3s;
+}
+
+.fixed-nav:hover {
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: 
+    0 6px 12px rgba(0, 0, 0, 0.25),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.05);
+}
+
+.fixed-nav::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 15px;
+  background: rgba(200, 200, 150, 0.4);
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .fixed-nav ul {
@@ -28,28 +75,45 @@ body {
 }
 
 .fixed-nav li {
-  margin: 8px 0;
+  margin: 10px 0;
 }
 
 .fixed-nav a {
   text-decoration: none;
-  color: #333;
-  font-size: 14px;
-  transition: color 0.3s;
+  color: #2c2c2c;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s;
+  display: block;
+  padding: 5px 8px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
 }
 
 .fixed-nav a:hover {
-  color: #0066cc;
+  color: #000;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Section active surlignée en bleu */
+.fixed-nav a.active {
+  background: linear-gradient(to right, 
+    rgba(100, 149, 237, 0.4) 0%, 
+    rgba(135, 206, 250, 0.5) 50%,
+    rgba(100, 149, 237, 0.4) 100%);
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(100, 149, 237, 0.3);
 }
 
 /* Contenu principal */
 .content {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding-right: 240px; /* Espace pour la navigation */
+  padding-right: 280px;
 }
 
-/* Blocs type carnet */
+/* Blocs type carnet - PLUS LARGES */
 .section-block {
   background: #fef9e7;
   background-image: 
@@ -67,55 +131,136 @@ body {
       #d4d4aa 25px
     );
   background-size: 100% 25px, 25px 100%;
-  padding: 40px 50px;
-  margin: 40px 0;
+  padding: 50px 60px;
+  margin: 50px 0;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
   position: relative;
   min-height: 300px;
-  scroll-margin-top: 20px; /* Pour la navigation */
+  scroll-margin-top: 20px;
 }
 
 .section-block::before {
   content: '';
   position: absolute;
-  left: 40px;
+  left: 45px;
   top: 0;
   bottom: 0;
-  width: 2px;
+  width: 3px;
   background: #e85d75;
+}
+
+/* Titres */
+.section-block h1 {
+  color: #1a1a1a;
+  font-size: 42px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  border-bottom: 3px solid #2c3e50;
+  padding-bottom: 10px;
 }
 
 .section-block h2 {
   color: #2c3e50;
-  font-size: 32px;
-  margin-bottom: 20px;
+  font-size: 36px;
+  margin-bottom: 25px;
+  margin-top: 25px;
   font-weight: bold;
   position: relative;
   z-index: 1;
 }
 
-.section-block p,
-.section-block ul,
-.section-block ol {
-  line-height: 25px; /* Aligné avec les carreaux */
-  color: #333;
-  font-size: 16px;
+.section-block h3 {
+  color: #34495e;
+  font-size: 28px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+  font-style: italic;
+}
+
+.section-block h4 {
+  color: #505050;
+  font-size: 22px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  font-weight: 600;
   position: relative;
   z-index: 1;
 }
 
+/* Texte */
+.section-block p,
 .section-block ul,
 .section-block ol {
-  margin-left: 30px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  line-height: 25px;
+  color: #333;
+  font-size: 17px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 15px;
+}
+
+.section-block strong {
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.section-block em {
+  font-style: italic;
+}
+
+.section-block u {
+  text-decoration: underline;
+  text-decoration-color: #2c3e50;
+  text-decoration-thickness: 1.5px;
+}
+
+.section-block ul,
+.section-block ol {
+  margin-left: 40px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.section-block li {
+  margin-bottom: 8px;
+}
+
+/* Images */
+.section-block img {
+  max-width: 100%;
+  height: auto;
+  margin: 25px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: block;
+}
+
+.section-block img.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-block img.small {
+  max-width: 300px;
+}
+
+.section-block img.medium {
+  max-width: 500px;
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .content {
     padding-right: 20px;
+    max-width: 900px;
   }
   
   .fixed-nav {
@@ -123,7 +268,8 @@ body {
     top: 0;
     right: 0;
     max-width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    transform: rotate(0deg);
   }
   
   .fixed-nav ul {
@@ -134,11 +280,23 @@ body {
 }
 
 @media (max-width: 768px) {
+  body {
+    padding: 20px 10px;
+  }
+  
   .section-block {
-    padding: 30px 30px;
+    padding: 35px 30px;
   }
   
   .section-block::before {
     left: 20px;
+  }
+  
+  .section-block h1 {
+    font-size: 32px;
+  }
+  
+  .section-block h2 {
+    font-size: 28px;
   }
 }
