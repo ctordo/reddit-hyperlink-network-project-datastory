@@ -104,16 +104,9 @@ body {
       transparent 24px,
       #d4d4aa 24px,
       #d4d4aa 25px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 24px,
-      #d4d4aa 24px,
-      #d4d4aa 25px
     );
   background-size: 100% 25px, 25px 100%;
-  padding: 50px 60px;
+  padding: 30px 60px 50px 60px;
   margin: 50px 0;
   border-radius: 8px;
   box-shadow: 
@@ -181,12 +174,14 @@ body {
 .section-block p,
 .section-block ul,
 .section-block ol {
-  line-height: 25px;
+  line-height: 28px;
   color: #333;
   font-size: 17px;
   position: relative;
   z-index: 1;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
+  text-align: justify;
+  letter-spacing: 0.3px;
 }
 
 .section-block strong {
@@ -222,7 +217,8 @@ body {
   margin: 25px 0;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  display: block;
+  box-shadow: none;
+  display: block;  
 }
 
 .section-block img.center {
@@ -231,11 +227,11 @@ body {
 }
 
 .section-block img.small {
-  max-width: 300px;
+  max-width: 150px;
 }
 
 .section-block img.medium {
-  max-width: 500px;
+  max-width: 250px;
 }
 
 /* Responsive */
