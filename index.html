@@ -124,11 +124,130 @@ sections:
   </p>
 </section>
 
+
+
+
+
+
+
+
+
+
+
 <section id="metric" class="section-block">
-  <h2>Toxicity measurements</h2>
+  <h1>Toxicity measurements</h1>
   
-  Put Cyp's stuff alraedy written in the notebook
-</section>
+  <h2>Principal toxicity metrics</h2>
+  
+  <h3>Toxicity score</h3>
+
+  <h4>Definition of toxicity</h4>
+
+  <p>
+  Our first fundamental preliminary step is to calculate a reliable and accurate metric of toxicity of each subreddit's post.
+  </p>
+  <p>
+  We define toxicity as patterns of communication or behavior that create a hostile, disrespectful, or harmful environment for 
+  participants. This can include insults, harassment, hate speech, excessive negativity, or attempts to provoke conflict. 
+  Toxicity reduces constructive discussion, discourages participation, and can damage the overall health and cohesion of the community.
+  </p>
+  <p>
+  This definition aligns with standard computational social science literature, where toxicity requires both negative emotional valence, 
+  and linguistic markers of aggression or harmful intent. Reddit, being a large, anonymous, and heterogeneous platform, often exhibits these 
+  patterns, making it an appropriate setting for a linguistic toxicity metric.
+  </p>
+  
+  <h4>86 textual properties</h4>
+
+  <p>
+    Our dataset includes 86 textual properties covering structural, lexical, emotional, and LIWC-derived indicators. 
+    While these features were not originally designed specifically for toxicity detection, prior research shows that they collectively 
+    capture many linguistic correlates of antagonistic or degrading speech. Let's understand what they actually represent:
+  </p>
+
+  <p>
+    <strong>Properties 1 to 18</strong> capture surface-level linguistic and structures of the text. They measure the basic composition 
+    and readability of a message, including its length, complexity, and word or sentence structure. They include metrics such as 
+    character and word counts, fractions of different character types (letters, digits, punctuation, etc.), sentence length averages, and 
+    readability scores. Together, they provide a quantitative snapshot of how the text is written rather than what it expresses.
+  </p>
+  <p>
+    <strong>Properties 19 to 21</strong> represent sentiment analysis metrics, derived using the VADER (Valence Aware Dictionary and 
+    sEntiment Reasoner) model. They aim to measure the emotional polarity of the text. It includes the Positive Sentiment, Negative Sentiment 
+    and Compound Sentiment. These features reflect the emotional valence of the language used.
+  </p>
+  <p>
+    <strong>Properties 22 to 86</strong> are purely lexicon-based ratios, derived using a text analyis tool called Linguistic Inquiry and 
+    Word Count (LIWC). Each LIWC represent the proportion of words in a text that belong to a certain lexicon: LIWC_X = (nb words in lexicon X) 
+    / (total nb words). While useful to see the presence of a certain vocubulary in a post, they remain purely lexical and doesn't treat emotion 
+    or sentiment in any way.
+  </p>
+  <p> 
+    In summary, while each property individually has limitations, together they provide a rich representation of linguistic features relevant to toxic communication.
+  </p> 
+
+
+  <h3>Properties that are interesting for capturing toxicity</h3>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>Description</th>
+        <th>Example of properties to use</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Emotional intensity</strong></td>
+        <td>Measures strength of negative emotion</td>
+        <td>
+          <code>Neg_Vader</code>, <code>LIWC_Negemo</code>,
+          <code>LIWC_Anger</code>, <code>LIWC_Anx</code>…
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Aggressive</strong></td>
+        <td>Captures hostile or taboo language</td>
+        <td>
+          <code>LIWC_Swear</code>, <code>LIWC_Sexual</code>,
+          <code>LIWC_Death</code>, <code>LIWC_Relig</code>…
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Targeting</strong></td>
+        <td>Focus on others (potential hostility toward people/groups)</td>
+        <td>
+          <code>LIWC_You</code>, <code>LIWC_Humans</code>,
+          <code>LIWC_Social</code>…
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Not cognitive</strong></td>
+        <td>Opposite of reasoned or analytical tone</td>
+        <td>
+          <code>LIWC_Insight</code>, <code>LIWC_Cause</code>…
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Violent and short</strong></td>
+        <td>Style indicators of impulsive or aggressive speech</td>
+        <td>
+          <code>Number of UPPERCASE words</code>,
+          <code>Readability index</code>…
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </section>
+
+
+
+
+
+
 
 
 
