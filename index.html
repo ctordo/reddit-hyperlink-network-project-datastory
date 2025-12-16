@@ -2,6 +2,8 @@
 layout: project
 title: Reddit Hyperlink Network Project
 sections:
+  - id: cover
+    title: Cover
   - id: intro
     title: Introduction
   - id: preprocessing
@@ -19,6 +21,40 @@ sections:
   - id: conclusion
     title: Conclusion
 ---
+
+<section id="cover" class="cover-page">
+  <div class="title">
+    TITRE DU PROJET
+  </div>
+  
+  <div class="subtitle">
+    This notebook contains all the research and results carried out as part of medical consultation #CS401.
+  </div>
+  
+  <table class="doctors-table">
+    <tr>
+      <td class="doctor-name">Dr. Smith</td>
+      <td class="doctor-name">Dr. Johnson</td>
+      <td class="doctor-name">Dr. Williams</td>
+      <td class="doctor-name">Dr. Brown</td>
+      <td class="doctor-name">Dr. Davis</td>
+    </tr>
+    <tr>
+      <td class="doctor-id">123456</td>
+      <td class="doctor-id">234567</td>
+      <td class="doctor-id">345678</td>
+      <td class="doctor-id">456789</td>
+      <td class="doctor-id">567890</td>
+    </tr>
+  </table>
+  
+  <div class="footer">
+    <div class="class">ADA Class</div>
+    <div class="date">December 16, 2025</div>
+  </div>
+</section>
+
+
 
 <section id="intro" class="section-block">  
   <h1>Introduction au projet</h1>
@@ -158,7 +194,14 @@ sections:
   and linguistic markers of aggression or harmful intent. Reddit, being a large, anonymous, and heterogeneous platform, often exhibits these 
   patterns, making it an appropriate setting for a linguistic toxicity metric.
   </p>
+
+  <div class="box-note">
+    <code>TOXICITY_SCORE</code>: Continuous metric that measures the toxicity intensity in a subreddit post
+  </div>
+
   
+  <strong>Now comes the fundamental question: how can we detect and quantify toxicity in a subreddit post?</strong>
+
   <h4>86 textual properties</h4>
 
   <p>
@@ -191,7 +234,7 @@ sections:
 
   <h4>Properties capturing toxicity</h4>
 
-  <table class="table">
+  <table class="toxicity-table">
     <thead>
       <tr>
         <th>Dimension</th>
@@ -260,15 +303,11 @@ sections:
     For example, some shortfalls of lexical metrics include:
   </p>
   <ul>
-    <li>Sarcasm, irony, and context.
-      <li>“Stupid guy” in a link targeting a funny video of a guy slipping </li>
-      <li>“Stupid guy” in a link targeting a video of a political speech </li>
-    </li>
-    <li>Cultural difference in language.
-      <li>Some communities are (by culture) founded on “offensive” language without being toxic. </li>
-      <li>For example, a *CallOfDuty* subreddit will frequently mention terms like "kill" or “assassination”. 
+    <li><u>Sarcasm, irony, and context</u>: Commenting “Stupid guy” in a link targeting a funny video of a guy slipping or in a link targeting a video of 
+        a political speech doesn't embody the same negativity.</li>
+    <li><u>Cultural difference in language</u>: Some communities are (by culture) founded on “offensive” language without being toxic.
+        For example, a <em>CallOfDuty</em> subreddit will frequently mention terms like "kill" or “assassination”. 
         These words are not toxic in that community, but could be considered so in other subreddits (ones not related to war or gaming). </li>
-    </li>
   </ul>
   <p>
     Because toxicity in our definition must reflect true negative intent, not just negative words, lexical sentiment proves insufficient.
@@ -279,6 +318,8 @@ sections:
 
 
 
+
+  <h3>Toxicity binary classification</h3>
 
 
 

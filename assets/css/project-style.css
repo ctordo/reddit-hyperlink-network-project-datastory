@@ -90,10 +90,100 @@ body {
 
 /* Contenu principal */
 .content {
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
   padding-right: 280px;
 }
+
+/* Page de couverture */
+.cover-page {
+  width: 100%;
+  max-width: 1100px;
+  aspect-ratio: 1 / 1.5;
+  background: url('../img/leather.jpg') center center;
+  background-size: cover;
+  margin: 50px 0;
+  border-radius: 8px;
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  scroll-margin-top: 20px;
+}
+
+.cover-page .title {
+  font-size: 72px;
+  font-weight: bold;
+  color: #D4AF37;
+  text-align: center;
+  font-family: 'Georgia', serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 30px;
+  letter-spacing: 3px;
+}
+
+.cover-page .subtitle {
+  font-size: 20px;
+  color: #D4AF37;
+  text-align: center;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  max-width: 700px;
+  line-height: 1.6;
+  margin-bottom: 80px;
+}
+
+.cover-page .doctors-table {
+  width: 100%;
+  max-width: 900px;
+  border-collapse: collapse;
+  margin-bottom: auto;
+}
+
+.cover-page .doctors-table td {
+  text-align: center;
+  padding: 15px 10px;
+  color: #D4AF37;
+  font-family: 'Georgia', serif;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.cover-page .doctors-table .doctor-name {
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 8px;
+}
+
+.cover-page .doctors-table .doctor-id {
+  font-size: 16px;
+  font-family: 'Courier New', monospace;
+}
+
+.cover-page .footer {
+  text-align: center;
+  color: #D4AF37;
+  font-family: 'Georgia', serif;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin-top: auto;
+}
+
+.cover-page .footer .class {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.cover-page .footer .date {
+  font-size: 18px;
+  font-style: italic;
+}
+
 
 /* Blocs type carnet - PLUS LARGES */
 .section-block {
