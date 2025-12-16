@@ -410,11 +410,11 @@ body {
 }
 
 .section-block img.small {
-  max-width: 150px;
+  max-width: 250px;
 }
 
 .section-block img.medium {
-  max-width: 250px;
+  max-width: 450px;
 }
 
 .section-block img.large {

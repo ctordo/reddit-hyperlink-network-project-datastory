@@ -63,6 +63,9 @@ sections:
 </section>
 
 
+<!-- #################################################################################################################################### -->
+<!-- INTRO -->
+<!-- #################################################################################################################################### -->
 
 <section id="intro" class="section-block">  
   <h1>Projet introduction</h1>
@@ -118,7 +121,7 @@ sections:
     <li>Exploring, preprocessing and cleaning data</li>
     <li>Designing a metric to detect and quantify toxicity</li>
     <li>Classifying different toxicity propagation styles</li>
-    <li>Parallelizing toxicity styles subreddits' thematics</li>
+    <li>Parallelizing toxicity styles with subreddits' thematics</li>
     <li>In-depth case studies</li>
   </ol>
   
@@ -129,20 +132,9 @@ sections:
 
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- #################################################################################################################################### -->
+<!-- PREPROCESSING -->
+<!-- #################################################################################################################################### -->
 
 <section id="preprocessing" class="section-block">
   <h1>Data Preprocessing</h1>
@@ -168,28 +160,24 @@ sections:
   </p>
 </section>
 
-
-
-
-
-
-
-
-
-
+<!-- #################################################################################################################################### -->
+<!-- METRICS -->
+<!-- #################################################################################################################################### -->
 
 <section id="metric" class="section-block">
   <h1>Toxicity measurements</h1>
   
+  <p>
+  Our first fundamental preliminary step is to <strong>calculate a reliable and accurate metric of toxicity</strong> of each subreddit's post.
+  </p>
+
   <h2>Principal toxicity metrics</h2>
   
   <h3>Toxicity score</h3>
 
   <h4>What do we mean by "toxicity"?</h4>
 
-  <p>
-  Our first fundamental preliminary step is to <strong>calculate a reliable and accurate metric of toxicity</strong> of each subreddit's post.
-  </p>
+  
   <p>
   We define toxicity as patterns of communication or behavior that create a hostile, disrespectful, or harmful environment for 
   participants. This can include insults, harassment, hate speech, excessive negativity, or attempts to provoke conflict. 
@@ -201,23 +189,32 @@ sections:
   patterns, making it an appropriate setting for a linguistic toxicity metric.
   </p>
   
-  <div class="box-note">
-    This text should be in a note box. But it's not...
+  <div class="box-warning">
+    <code>TOXICITY_SCORE</code>: Continuous score that measures the toxicity intensity in a subreddit post
   </div>
 
   <p>
-    <strongorange>So, how can we detect and quantify toxicity?</strongorange>
+    <strong>So, how will we we detect and quantify toxicity?</strong>
   </p>
 
-  <h4>What are the 86 textual properties of our data?</h4>
+  <h4>How to exploit the 86 textual properties of our data?</h4>
 
   <p>
     Our dataset includes 86 textual properties covering structural, lexical, emotional, and LIWC-derived indicators. 
-    While these features were not originally designed specifically for toxicity detection, prior research shows that they collectively 
-    capture many linguistic correlates of antagonistic or degrading speech. Let's understand what they actually represent:
+    While these features were not originally designed specifically for toxicity detection, they collectively 
+    capture many linguistic correlates of antagonistic or degrading speech. 
   </p>
 
-  <p>
+  <div class="box-note box-collapsible">
+  <div class="box-header">
+    <div>
+      <strong>Note:</strong> These properties cover a wide range of linguistic features. What exactly do they capture?
+    </div>
+    <button class="box-toggle" aria-label="Toggle details"></button>
+  </div>
+  
+  <div class="box-content">
+    <p>
     <strong>Properties 1 to 18</strong> capture surface-level linguistic and structures of the text. They measure the basic composition 
     and readability of a message, including its length, complexity, and word or sentence structure. They include metrics such as 
     character and word counts, fractions of different character types (letters, digits, punctuation, etc.), sentence length averages, and 
@@ -234,8 +231,10 @@ sections:
     / (total nb words)</code>. While useful to see the presence of a certain vocubulary in a post, they remain purely lexical and doesn't treat emotion 
     or sentiment in any way.
   </p>
+  </div>
+  </div>
+
   <p> 
-    In summary, while each property individually has limitations, together they provide a rich representation of linguistic features relevant to toxic communication. 
     Below are some metrics that are pormising to use, based only on the qualitative defintion of toxicity.
   </p> 
 
@@ -303,10 +302,7 @@ sections:
   <h4>Why is the VADER score not enough for measuring negativity?</h4>
 
   <p>
-    The fundamental problem is that none of the 86 properties provides a reliable measure of <strong>emotional negativity</strong> in a post.
-  </p>
-
-  <p>
+    The fundamental problem is that none of the 86 properties provides a reliable measure of <strong>emotional negativity</strong> in a post. 
     While the VADER scores seemed promising (optimized for social media texts and posts), they mainly work like a LIWC score 
     and calculate emotion of the <strong>language</strong> that was used (like an advanced lexical repertory of words that are conventionally 
     considered negative or harmful on social platforms). This cannot be considered an accurate measure of negativity in our context. 
@@ -315,7 +311,7 @@ sections:
   <ul>
     <li><u>Sarcasm, irony, and context</u>: Commenting “Stupid guy” in a link targeting a funny video of a guy slipping or in a link targeting a video of 
         a political speech doesn't embody the same negativity.</li>
-    <li><u>Cultural difference in language</u>: Some communities are (by culture) founded on “offensive” language without being toxic.
+    <li><u>Cultural difference in language</u>: Some communities are (by culture) founded on “offensive” language without being negative.
         For example, a <em>CallOfDuty</em> subreddit will frequently mention terms like "kill" or “assassination”. 
         These words are not toxic in that community, but could be considered so in other subreddits (ones not related to war or gaming). </li>
   </ul>
@@ -334,13 +330,11 @@ sections:
 
   <p>
     To understand which properties meaningfully contribute to negative interactions, we compare normalized mean property values between positive and 
-    negative links. The idea behind this procedure is that:
-  <ul>
-    <li>Comparing group means detects systematic differences in linguistic patterns</li>
-    <li>Normalization accounts for differing scales and distributions across features</li>
-    <li>Toxicity-related linguistic features are expected to cluster more strongly in negative posts</li>
-    <li>Identifying features more common in negative interactions ensures alignment with our conceptual model (toxicity requires negativity)</li>
-  </ul>
+    negative links. Comparing group means detects systematic differences in linguistic patterns, while normalization accounts for differing scales 
+    and distributions across features. Toxicity-related linguistic features are expected to cluster more strongly in negative posts. 
+    Identifying features more common in negative interactions ensures alignment with our conceptual model (toxicity requires negativity)
+  </p>
+  <p>
   Although this procedure does not infer causality and therefore doesn't replace the qualitative choice of toxicity components, it strongly supports it 
   by ensuring that we later select variables that are consistent with the requirement of negativity in toxicity.
   </p>
@@ -377,12 +371,87 @@ sections:
       The threshold of <strong>0.25</strong> therefore strikes the optimal balance between inclusiveness and discriminative power.
     </p>
   </div>
-</div>
+  </div>
 
-  <img src="{{ '/assets/img/zdiffs.png' | relative_url }}" alt="z differences" class="center medium">
+  <img src="{{ '/assets/img/zdiffs.png' | relative_url }}" alt="z differences" class="center large">
 
 
+
+
+  <h4>Combining Features Into the Toxicity Metric</h4>
+
+  <p>
+    Based on the conceptual qualitative choice of what defines toxicity and the empirical negativity analysis above, we select a subset of properties 
+    to constitute our toxicity metric. These properties already exist in ratio form (0–1), ensuring comparability.
+  </p>
+  <p>
+    We define <code>TOXICITY_SCORE</code> as a <strongorange>weighted linear combination of the selected properties</strongorange>. A linear model 
+    is appropriate because it balances interpretability (and will allow immediate examination of feature contributions) with simple comparison across subreddits. 
+    It also supports later scaling, standardization, and model-based refinements. Weights are based on informed judgments from literature on aggressive discourse 
+    (e.g., strong weight on anger and swearing; negative weight on cognitive complexity features like insight or cause).
+  </p>
+  <p>
+    <strong>Weights are normalized by the sum of absolute values.</strong> This choice preserves relative influence of features and rescales the score into a bounded and 
+    interpretable range. Il also ensures no single feature arbitrarily dominates due to coefficient magnitude. This normalization is a standard approach for 
+    interpretability when working with heterogeneous features and manually chosen weights.
+  </p>
+
+
+
+
+
+
+  Let's visualize our new metric's empirical distribution.
+
+  <img src="{{ '/assets/img/zdiffs.png' | relative_url }}" alt="z differences" class="center large">
+
+  <p>
+  Theoretically, the score ranges from –1 to 1, but empirically falls within –0.1 to 0.4, reflecting real distributions in Reddit posts. 
+  Since the scale is later standardized, this restricted range is not problematic.
+  </p>
+  
+  
+  
   <h3>Toxicity binary classification</h3>
+  <p>
+  We now have a reliable, continuous measure of toxicity. But it's not necessarily easy to interpret directly... 
+  We would like to accompany this continuous metric with a binary classification: "Is this toxicity score value sufficiently high? 
+  In other words, is this message toxic?"
+  </p>
+
+  <div class="box-warning">
+    <code>TOXICITY_CAT</code>: Categorical metric that classifies posts as non-toxic (0) or toxic (1), after passing a threshold on <code>TOXICITY_SCORE</code>
+  </div>
+
+  The threshod above which messages are flagged as toxic is <strong>the quantile-75 of the toxicity scores distribution</strong>. 
+  That is, .
+
+<div class="box-note box-collapsible">
+  <div class="box-header">
+    <div>
+      <strong>Note:</strong> We mark as significantly toxic the top 25% messages with highest score. What motivates our choice?
+    </div>
+    <button class="box-toggle" aria-label="Toggle details"></button>
+  </div>
+  
+  <div class="box-content">
+    <ul>
+      <li>Toxic behavior is statistically rare — and tail-based thresholds reflect this. Online toxicity is considered to be heavy-tailed in 
+        the sense that most posts are neutral, while toxic ones are relatively rare and concentrated at the upper end of the distribution. 
+        Selecting the <strong>upper quartile (top 25%)</strong> isolates the <strong>long tail of intense language</strong> but ensures coverage of sufficiently 
+        frequent abusive content. Thus, the 75th percentile is a natural and theoretically grounded boundary.</li>
+      <li>75th percentile ensures class balance suitable for downstream modeling. Binary classification tasks require a **non-trivial positive class** to avoid degenerate models.  
+        Cutting at 90% would lead to the positive class being too small (5–10%), sparse, with high variance. Cutting at 50% would lead to the positive class being too large, 
+        not aligned with toxicity rarity.</li>
+      <li>The 75th percentile is conceptually aligned with “significant toxicity”. By definition, we want to classify only <strong>strongly toxic</strong> posts as toxic. 
+        Choosing the <strong>top quartile</strong> is a reliable way to identify posts with unusually high use of aggressive markers and atypical linguistic patterns. 
+        This makes toxicity classification interpretable and consistent across subreddits.</li>
+    </ul>
+  </div>
+  </div>
+
+
+
 
 
 
@@ -391,13 +460,8 @@ sections:
 
 
 
-
-
-
-
-
-
-
+<!-- #################################################################################################################################### -->
+<!-- #################################################################################################################################### -->
 
 <section id="resultats" class="section-block">
   <h2>Résultats</h2>
