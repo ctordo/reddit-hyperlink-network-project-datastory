@@ -345,29 +345,39 @@ sections:
   by ensuring that we later select variables that are consistent with the requirement of negativity in toxicity.
   </p>
   
-  <div class="box-note">
-    <strong>Note:</strong> We select a z-difference threshold of 0.25, which retains ~20 properties. Why?
+  <div class="box-note box-collapsible">
+  <div class="box-header">
+    <div>
+      <strong>Note:</strong> We select a z-difference threshold of 0.25, which retains ~20 properties. Why?
+    </div>
+    <button class="box-toggle" aria-label="Toggle details"></button>
+  </div>
+  
+  <div class="box-content">
     <ul>
-      <li> A difference of **0.25 standard deviations** corresponds to a small-to-moderate effect size. 
+      <li>A difference of <strong>0.25 standard deviations</strong> corresponds to a small-to-moderate effect size. 
         In textual and psychological data, small-to-moderate effects are often meaningful because language patterns 
-        are inherently noisy and multidimensional. A 0.25 cutoff ensures that **weak or negligible features are excluded**, 
-        while **features with clear group differences in positive vs negative sentiment are retained**. This balances 
+        are inherently noisy and multidimensional. A 0.25 cutoff ensures that <strong>weak or negligible features are excluded</strong>, 
+        while <strong>features with clear group differences in positive vs negative sentiment are retained</strong>. This balances 
         strictness with comprehensiveness.</li>
       <li>As we explained above in our definition of toxicity, it cannot be captured by a single marker but arises from a 
-        constellation of linguistic behaviors.Well-validated toxicity models (Google Perspective API, Jigsaw toxicity challenges...) 
+        constellation of linguistic behaviors. Well-validated toxicity models (Google Perspective API, Jigsaw toxicity challenges...) 
         incorporate dozens of features, not just a few. On the other side, if the metric relied on too many features, it would 
         risk misinterpreting domain-specific vocabulary as toxic and producing high-variance estimates for minority communities. 
-        Using ~20 features distributes the metric across a reasonably braod linguistic base, improving stability and most importantly 
+        Using ~20 features distributes the metric across a reasonably broad linguistic base, improving stability and most importantly 
         cross-subreddit generalizability.</li>
       <li>20 features is consistent with dimensionality in psycholinguistic instruments. Psycholinguistic tools like Empath (200+ categories) 
-        or Biber’s Dimensions of Register Variation (50+ linguistic dimensions) show that meaningful linguistic traits require between 10 and 
+        or Biber's Dimensions of Register Variation (50+ linguistic dimensions) show that meaningful linguistic traits require between 10 and 
         30 variables to capture reliably.</li>
-      <li>Identifying features more common in negative interactions ensures alignment with our conceptual model (toxicity requires negativity)</li>
     </ul>
-    To summarize these argumennts, retaining **20 properties** maximizes informational coverage, ensures robustness across heterogeneous subreddits, 
-    matches standard dimensional expectations from psycholinguistics, and corresponds to a statistically meaningful effect-size cutoff. 
-    The threshold of **0.25** therefore strikes the optimal balance between inclusiveness and discriminative power.
+    
+    <p>
+      To summarize these arguments, retaining <strong>20 properties</strong> maximizes informational coverage, ensures robustness across heterogeneous subreddits, 
+      matches standard dimensional expectations from psycholinguistics, and corresponds to a statistically meaningful effect-size cutoff. 
+      The threshold of <strong>0.25</strong> therefore strikes the optimal balance between inclusiveness and discriminative power.
+    </p>
   </div>
+</div>
 
   <img src="{{ '/assets/img/zdiffs.png' | relative_url }}" alt="z differences" class="center medium">
 

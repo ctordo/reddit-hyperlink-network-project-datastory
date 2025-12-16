@@ -45,3 +45,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// Gestion des boxes dépliables
+document.addEventListener('DOMContentLoaded', function() {
+  const collapsibleBoxes = document.querySelectorAll('.box-collapsible');
+  
+  collapsibleBoxes.forEach(box => {
+    const toggle = box.querySelector('.box-toggle');
+    const content = box.querySelector('.box-content');
+    
+    if (toggle && content) {
+      toggle.addEventListener('click', function() {
+        box.classList.toggle('expanded');
+      });
+    }
+  });
+});
