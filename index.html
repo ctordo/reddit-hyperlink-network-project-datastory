@@ -185,7 +185,7 @@ sections:
   
   <h3>Toxicity score</h3>
 
-  <h4>Definition of toxicity</h4>
+  <h4>What do we mean by "toxicity"?</h4>
 
   <p>
   Our first fundamental preliminary step is to <strong>calculate a reliable and accurate metric of toxicity</strong> of each subreddit's post.
@@ -209,7 +209,7 @@ sections:
     <strongorange>So, how can we detect and quantify toxicity?</strongorange>
   </p>
 
-  <h4>86 textual properties</h4>
+  <h4>What are the 86 textual properties of our data?</h4>
 
   <p>
     Our dataset includes 86 textual properties covering structural, lexical, emotional, and LIWC-derived indicators. 
@@ -235,11 +235,11 @@ sections:
     or sentiment in any way.
   </p>
   <p> 
-    In summary, while each property individually has limitations, together they provide a rich representation of linguistic features relevant to toxic communication.
+    In summary, while each property individually has limitations, together they provide a rich representation of linguistic features relevant to toxic communication. 
+    Below are some metrics that are pormising to use, based only on the qualitative defintion of toxicity.
   </p> 
 
 
-  <strong>Properties capturing toxicity</strong>
 
   <table class="toxicity-table">
     <thead>
@@ -302,7 +302,7 @@ sections:
 
   <h4>Why is the VADER score not enough for measuring negativity?</h4>
 
-  </p>
+  <p>
     The fundamental problem is that none of the 86 properties provides a reliable measure of <strong>emotional negativity</strong> in a post.
   </p>
 
@@ -323,7 +323,7 @@ sections:
     Because toxicity in our definition must reflect true negative intent, not just negative words, lexical sentiment proves insufficient.
   </p>
 
-  <h4>Good news: <code>LINK_SENTIMENT</code></h4>
+  <h4>Good news: <code>LINK_SENTIMENT</code> helps!</h4>
 
   <p>
     <code>LINK_SENTIMENT</code> is derived using a supervised sentiment classifier trained on manually labeled Reddit data. 
@@ -331,10 +331,45 @@ sections:
     So this binary sentiment classifier is designed specifically for inter-subreddit interactions and is our most reliable (categorical) 
     measure for pure negativity.
   </p>
+
+  <p>
+    To understand which properties meaningfully contribute to negative interactions, we compare normalized mean property values between positive and 
+    negative links. The idea behind this procedure is that:
+  <ul>
+    <li>Comparing group means detects systematic differences in linguistic patterns</li>
+    <li>Normalization accounts for differing scales and distributions across features</li>
+    <li>Toxicity-related linguistic features are expected to cluster more strongly in negative posts</li>
+    <li>Identifying features more common in negative interactions ensures alignment with our conceptual model (toxicity requires negativity)</li>
+  </ul>
+  Although this procedure does not infer causality and therefore doesn't replace the qualitative choice of toxicity components, it strongly supports it 
+  by ensuring that we later select variables that are consistent with the requirement of negativity in toxicity.
+  </p>
   
+  <div class="box-note">
+    <strong>Note:</strong> We select a z-difference threshold of 0.25, which retains ~20 properties. Why?
+    <ul>
+      <li> A difference of **0.25 standard deviations** corresponds to a small-to-moderate effect size. 
+        In textual and psychological data, small-to-moderate effects are often meaningful because language patterns 
+        are inherently noisy and multidimensional. A 0.25 cutoff ensures that **weak or negligible features are excluded**, 
+        while **features with clear group differences in positive vs negative sentiment are retained**. This balances 
+        strictness with comprehensiveness.</li>
+      <li>As we explained above in our definition of toxicity, it cannot be captured by a single marker but arises from a 
+        constellation of linguistic behaviors.Well-validated toxicity models (Google Perspective API, Jigsaw toxicity challenges...) 
+        incorporate dozens of features, not just a few. On the other side, if the metric relied on too many features, it would 
+        risk misinterpreting domain-specific vocabulary as toxic and producing high-variance estimates for minority communities. 
+        Using ~20 features distributes the metric across a reasonably braod linguistic base, improving stability and most importantly 
+        cross-subreddit generalizability.</li>
+      <li>20 features is consistent with dimensionality in psycholinguistic instruments. Psycholinguistic tools like Empath (200+ categories) 
+        or Biber’s Dimensions of Register Variation (50+ linguistic dimensions) show that meaningful linguistic traits require between 10 and 
+        30 variables to capture reliably.</li>
+      <li>Identifying features more common in negative interactions ensures alignment with our conceptual model (toxicity requires negativity)</li>
+    </ul>
+    To summarize these argumennts, retaining **20 properties** maximizes informational coverage, ensures robustness across heterogeneous subreddits, 
+    matches standard dimensional expectations from psycholinguistics, and corresponds to a statistically meaningful effect-size cutoff. 
+    The threshold of **0.25** therefore strikes the optimal balance between inclusiveness and discriminative power.
+  </div>
 
-
-
+  <img src="{{ '/assets/img/zdiffs.png' | relative_url }}" alt="z differences" class="center medium">
 
 
   <h3>Toxicity binary classification</h3>
@@ -439,15 +474,15 @@ sections:
   </div>
 
   <div class="box-warning">
-    <strong>Attention:</strong> Les données présentées sont issues d'un échantillon limité de subreddits.
+    <strong>Remark:</strong> Les données présentées sont issues d'un échantillon limité de subreddits.
   </div>
   
   <div class="box-error">
-    <strong>Erreur potentielle:</strong> Cette analyse ne prend pas en compte les liens supprimés par les modérateurs.
+    <strong>Warning:</strong> Cette analyse ne prend pas en compte les liens supprimés par les modérateurs.
   </div>
   
   <div class="box-success">
-    <strong>Succès:</strong> Le dataset a été collecté avec succès et contient plus de 100,000 liens.
+    <strong>Success:</strong> Le dataset a été collecté avec succès et contient plus de 100,000 liens.
   </div>
   
   <h3>Biais potentiels</h3>
