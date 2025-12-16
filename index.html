@@ -115,21 +115,19 @@ sections:
   <h3>Methodology overview</h3>
 
   <ol>
-    <li>Metho point 1</li>
-    <li>Metho point 2</li>
-    <li>Metho point 3</li>
-    <li>Metho point 4</li>
+    <li>Exploring, preprocessing and cleaning data</li>
+    <li>Designing a metric to detect and quantify toxicity</li>
+    <li>Classifying different toxicity propagation styles</li>
+    <li>Parallelizing toxicity styles subreddits' thematics</li>
+    <li>In-depth case studies</li>
   </ol>
   
   <p>
-    Through these combined approaches, the project seeks to build a richer understanding of toxicity on Reddit by 
+    Through these sequential approaches, the project seeks to build a richer understanding of toxicity on Reddit by 
     connecting behavioral patterns with the structural and thematic dimensions of the platform’s hyperlink network.
   </p>
 
 </section>
-
-
-
 
 
 
@@ -156,17 +154,17 @@ sections:
   <h4>Subsubtitle</h4>
 
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+    AAA
   </p>
   
   <h3>Subtitle</h3>
   <p>
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    BBB
   </p>
   
   <h3>Subtitle</h3>
   <p>
-    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+    CCC
   </p>
 </section>
 
@@ -202,10 +200,11 @@ sections:
   and linguistic markers of aggression or harmful intent. Reddit, being a large, anonymous, and heterogeneous platform, often exhibits these 
   patterns, making it an appropriate setting for a linguistic toxicity metric.
   </p>
+  
   <p>
-  <box-note>
-    <code>TOXICITY_SCORE</code>: Continuous metric that measures the toxicity intensity in a subreddit post
-  </box-note>
+  <div class="box-note">
+    This text should be in a note box. But it's not...
+  </div>
   </p>
 
   <p>
@@ -233,8 +232,8 @@ sections:
   </p>
   <p>
     <strong>Properties 22 to 86</strong> are purely lexicon-based ratios, derived using a text analyis tool called Linguistic Inquiry and 
-    Word Count (LIWC). Each LIWC represent the proportion of words in a text that belong to a certain lexicon: LIWC_X = (nb words in lexicon X) 
-    / (total nb words). While useful to see the presence of a certain vocubulary in a post, they remain purely lexical and doesn't treat emotion 
+    Word Count (LIWC). Each LIWC represent the proportion of words in a text that belong to a certain lexicon: <code>LIWC_X = (nb words in lexicon X) 
+    / (total nb words)</code>. While useful to see the presence of a certain vocubulary in a post, they remain purely lexical and doesn't treat emotion 
     or sentiment in any way.
   </p>
   <p> 
@@ -242,7 +241,7 @@ sections:
   </p> 
 
 
-  <h4>Properties capturing toxicity</h4>
+  <strong>Properties capturing toxicity</strong>
 
   <table class="toxicity-table">
     <thead>
@@ -254,7 +253,7 @@ sections:
     </thead>
     <tbody>
       <tr>
-        <td><strong>Emotional intensity</strong></td>
+        <td><strongorange>Emotional intensity</strongorange></td>
         <td>Measures strength of negative emotion</td>
         <td>
           <code>Neg_Vader</code>, <code>LIWC_Negemo</code>,
@@ -262,7 +261,7 @@ sections:
         </td>
       </tr>
       <tr>
-        <td><strong>Aggressive</strong></td>
+        <td><strongorange>Aggressive</strongorange></td>
         <td>Captures hostile or taboo language</td>
         <td>
           <code>LIWC_Swear</code>, <code>LIWC_Sexual</code>,
@@ -270,7 +269,7 @@ sections:
         </td>
       </tr>
       <tr>
-        <td><strong>Targeting</strong></td>
+        <td><strongorange>Targeting</strongorange></td>
         <td>Focus on others (potential hostility toward people/groups)</td>
         <td>
           <code>LIWC_You</code>, <code>LIWC_Humans</code>,
@@ -278,14 +277,14 @@ sections:
         </td>
       </tr>
       <tr>
-        <td><strong>Not cognitive</strong></td>
+        <td><strongorange>Not cognitive</strongorange></td>
         <td>Opposite of reasoned or analytical tone</td>
         <td>
           <code>LIWC_Insight</code>, <code>LIWC_Cause</code>…
         </td>
       </tr>
       <tr>
-        <td><strong>Violent and short</strong></td>
+        <td><strongorange>Violent and short</strongorange></td>
         <td>Style indicators of impulsive or aggressive speech</td>
         <td>
           <code>Number of UPPERCASE words</code>,
@@ -306,12 +305,12 @@ sections:
   <h4>Why is the VADER score not enough for measuring negativity?</h4>
 
   </p>
-    The fundamental problem is that none of the 86 properties provides a reliable measure of **emotional negativity** in a post.
+    The fundamental problem is that none of the 86 properties provides a reliable measure of <strong>emotional negativity<strong></strong> in a post.
   </p>
 
   <p>
     While the VADER scores seemed promising (optimized for social media texts and posts), they mainly work like a LIWC score 
-    and calculate emotion of the **language** that was used (like an advanced lexical repertory of words that are conventionally 
+    and calculate emotion of the <strong>language</strong> that was used (like an advanced lexical repertory of words that are conventionally 
     considered negative or harmful on social platforms). This cannot be considered an accurate measure of negativity in our context. 
     For example, some shortfalls of lexical metrics include:
   </p>
