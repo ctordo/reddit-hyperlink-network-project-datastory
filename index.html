@@ -148,12 +148,9 @@ sections:
 
   <p>
     The main data used in this study comes from the Reddit Hyperlink Network, which models interactions between subreddits 
-    through hyperlinks embedded in Reddit posts. Two complementary datasets are used:
+    through hyperlinks embedded in Reddit posts. Two complementary datasets are used: one dataset containing hyperlinks appearing in the 
+    body of posts, and one dataset containing hyperlinks appearing in post titles.
   </p>
-  <ul>
-    <li>One dataset containing hyperlinks appearing in the body of posts.</li>
-    <li>One dataset containing hyperlinks appearing in post titles. </li>
-  </ul>
   <p>
     Both datasets share the same structure. Each row corresponds to a directed interaction from a source subreddit to a 
     target subreddit at a specific point in time. In addition to the subreddit identifiers, each interaction includes a timestamp, 
@@ -192,7 +189,7 @@ sections:
     </a>
   </p>
 
-  <div class="box-error box-collapsible">
+  <div class="box-note box-collapsible">
     <div class="box-header">
       <div>
         <strong>Note:</strong>  Get more details about preprocessing and cleaning steps:
@@ -269,8 +266,8 @@ sections:
 
   
   <p>
-  We define toxicity as patterns of communication or behavior that create a hostile, disrespectful, or harmful environment for 
-  participants. This can include insults, harassment, hate speech, excessive negativity, or attempts to provoke conflict. 
+  We define toxicity as <strongorange>patterns of communication or behavior that create a hostile, disrespectful, or harmful environment for 
+  participants</strongorange>. This can include insults, harassment, hate speech, excessive negativity, or attempts to provoke conflict. 
   Toxicity reduces constructive discussion, discourages participation, and can damage the overall health and cohesion of the community.
   </p>
   <p>
