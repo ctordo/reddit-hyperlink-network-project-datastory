@@ -141,7 +141,7 @@ body {
   font-weight: bold;
   color: #D4AF37;
   text-align: center;
-  font-family: 'Allura', cursive;
+  font-family: 'Allura', 'Segoe Script', 'Brush Script MT', cursive;
   text-shadow: none;
   letter-spacing: 2px;
 }
@@ -173,7 +173,7 @@ body {
   font-size: 16px;
   font-weight: 600;
   color: #D4AF37;
-  font-family: 'Allura', cursive;
+  font-family: 'Allura', 'Segoe Script', 'Brush Script MT', cursive;
   text-shadow: none;
   margin-top: 15px;
 }
