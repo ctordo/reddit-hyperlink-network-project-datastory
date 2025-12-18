@@ -70,7 +70,7 @@ sections:
   <!-- #################################################################################################################################### -->
   <h3>Context</h3>
   <p>
-    Reddit is often described as a platform or a collection of communities. In our study, we invite you to see it differently: <strongorange>as a vast archipelago</strongorange>. 
+    Reddit is often described as a platform or a collection of communities. In our study, we invite you to see it differently: <strong>as a vast archipelago</strong>. 
     Thousands of islands (subreddits) each with their own cultures, norms, and languages, are connected by invisible currents of hyperlinks, references, and shared users. 
     Most days, these currents carry harmless conversation. But sometimes, something else travels with them... Earlier this year, several monitoring organizations raised an alert: 
     <strong>patterns of toxic behavior appeared to be spreading across Reddit</strong> in ways that 
@@ -96,12 +96,12 @@ sections:
       <img src="{{ '/assets/img/redditlogo.png' | relative_url }}" alt="Reddit Logo" class="center small">
   
   <p>
-    <strongorange>Reddit</strongorange> is a large, community-driven social media platform <strong>structured around user-created forums known as subreddits.</strong> 
+    <strong>Reddit</strong> is a large, community-driven social media platform <strong>structured around user-created forums known as subreddits.</strong> 
     Each subreddit centers on a specific topic (ranging from news, politics, and science to niche hobbies and pop-culture 
     interests) and functions as its own semi-autonomous community with distinct norms, moderators, and posting cultures. 
     Interactions on Reddit occur primarily through posts and comments, and one subreddit can reference another by including 
-    a hyperlink within the text or title of a post. These cross-subreddit links form what is known as the <strongorange>Reddit Hyperlink 
-    Network</strongorange>: a web of directed connections that reveals how information, discussions, and community attention flow across the 
+    a hyperlink within the text or title of a post. These cross-subreddit links form what is known as the <strong>Reddit Hyperlink 
+    Network</strong>: a web of directed connections that reveals how information, discussions, and community attention flow across the 
     platform.
   </p>
     </div>
@@ -177,14 +177,10 @@ sections:
   </div>
   <p>
   Before tracing any outbreak, we needed to understand the terrain. Using the subreddit embeddings, we immediately projected Reddit into a two-dimensional space, 
-  transforming an abstract network into a navigable landscape of clustered islands and thematic regions. For the first time, the scale of the challenge became visible.
+  transforming an abstract network into a navigable landscape of clustered islands and thematic regions. For the first time, the scale of the challenge became visible...
   </p>
 
   <img src="{{ '/assets/img/subredditembeddingsinit.png' | relative_url }}" alt="subreddit embeddings" class="center large">
-
-  <p>
-  With the map in hand and our instruments ready, we were finally prepared to launch the mission!
-  </p>
   
   <!-- #################################################################################################################################### -->
   <h3>Methodology overview</h3>
@@ -214,8 +210,8 @@ sections:
   To study propagation, we first needed a reliable and consistent way to detect and quantify toxicity at its source: the individual Reddit post.
   </p>
   <p>
-  We define toxicity as <strongorange>patterns of communication or behavior that create a hostile, disrespectful, or harmful environment for 
-  participants</strongorange>. This can include insults, harassment, hate speech, excessive negativity, or attempts to provoke conflict. 
+  We define toxicity as <strong>patterns of communication or behavior that create a hostile, disrespectful, or harmful environment for 
+  participants</strong>. This can include insults, harassment, hate speech, excessive negativity, or attempts to provoke conflict. 
   Toxicity reduces constructive discussion, discourages participation, and can damage the overall health and cohesion of the community.
   </p>
 
@@ -271,7 +267,7 @@ sections:
     </thead>
     <tbody>
       <tr>
-        <td><strongorange>Emotional intensity</strongorange></td>
+        <td><strong>Negative</strong></td>
         <td>Measures strength of negative emotion</td>
         <td>
           <code>Neg_Vader</code>, <code>LIWC_Negemo</code>,
@@ -279,7 +275,7 @@ sections:
         </td>
       </tr>
       <tr>
-        <td><strongorange>Aggressive</strongorange></td>
+        <td><strong>Aggressive</strong></td>
         <td>Captures hostile or taboo language</td>
         <td>
           <code>LIWC_Swear</code>, <code>LIWC_Sexual</code>,
@@ -287,7 +283,7 @@ sections:
         </td>
       </tr>
       <tr>
-        <td><strongorange>Targeting</strongorange></td>
+        <td><strong>Targeting</strong></td>
         <td>Focus on others (potential hostility toward people/groups)</td>
         <td>
           <code>LIWC_You</code>, <code>LIWC_Humans</code>,
@@ -295,14 +291,14 @@ sections:
         </td>
       </tr>
       <tr>
-        <td><strongorange>Not cognitive</strongorange></td>
+        <td><strong>Not cognitive</strong></td>
         <td>Opposite of reasoned or analytical tone</td>
         <td>
           <code>LIWC_Insight</code>, <code>LIWC_Cause</code>…
         </td>
       </tr>
       <tr>
-        <td><strongorange>Violent and short</strongorange></td>
+        <td><strong>Violent and short</strong></td>
         <td>Style indicators of impulsive or aggressive speech</td>
         <td>
           <code>Number of UPPERCASE words</code>,
@@ -312,15 +308,11 @@ sections:
     </tbody>
   </table>
 
-  <p>
-    However, above all these textual properties, we also consider true <strong>negativity</strong> of a post to be a <strong>necessary</strong> 
-    component for it to be toxic.
-  </p> 
-
-  <div class="box-warning box-collapsible">
+  <div class="box-error box-collapsible">
   <div class="box-header">
     <div>
-      But none of these 86 properties actually measure <strong>emotional negativity</strong>...
+      But most importantly, we consider real <strong>emotional negativity</strong> of a post to be a <strong>necessary</strong> 
+      component for it to be toxic. None of these 86 properties actually measure it...
     </div>
     <button class="box-toggle" aria-label="Toggle details"></button>
   </div>
@@ -356,8 +348,8 @@ sections:
   </p>
 
   <p>
-    To understand which properties meaningfully contribute to negative interactions, <strongorange> we compare normalized mean property values between positive and 
-    negative links</strongorange>. Comparing group means detects systematic differences in linguistic patterns, while normalization accounts for differing scales 
+    To understand which properties meaningfully contribute to negative interactions, <strong> we compare normalized mean property values between positive and 
+    negative links</strong>. Comparing group means detects systematic differences in linguistic patterns, while normalization accounts for differing scales 
     and distributions across features. Toxicity-related linguistic features are expected to cluster more strongly in negative posts. 
     Identifying features more common in negative interactions ensures alignment with our conceptual model (toxicity requires negativity)
   </p>
