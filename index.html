@@ -399,8 +399,8 @@ sections:
   <h3>Toxicity scoring</h3>
 
   <p>
-    Based on the conceptual qualitative choice of what defines toxicity and the empirical negativity analysis above, we select a subset of properties 
-    to constitute our toxicity metric and builf a weighted average of them. These properties already exist in ratio form (0–1), ensuring comparability.
+    Based on the conceptual qualitative choice of what defines toxicity and the empirical negativity analysis above, we <strong>select a subset of properties</strong> 
+    to constitute our toxicity metric and build a <strong>weighted average</strong> of them. These properties already exist in ratio form (0–1), ensuring comparability.
   </p>
   
   <div class="box-warning box-collapsible">
@@ -413,7 +413,7 @@ sections:
   
   <div class="box-content">
     <p>
-    Scorring is defined as a weighted linear combination of the selected properties. A linear model is appropriate because it balances interpretability (and will 
+    Scoring is defined as a <strong>weighted linear combination of the selected properties</strong>. A linear model is appropriate because it balances interpretability (and will 
     allow immediate examination of feature contributions) with simple comparison across subreddits. 
     It also supports later scaling, standardization, and model-based refinements. Weights are based on informed judgments from literature on aggressive discourse 
     (e.g., strong weight on anger and swearing; negative weight on cognitive complexity features like insight or cause).
@@ -478,8 +478,7 @@ sections:
   <img src="{{ '/assets/img/score_distrib.png' | relative_url }}" alt="score distrib" class="center large">
 
   <p>
-  Theoretically, the score ranges from –1 to 1, but empirically falls within –0.1 to 0.4, reflecting real distributions in Reddit posts. 
-  Since the scale is later standardized, this restricted range is not problematic.
+  Talk about power law??
   </p>
   
   
@@ -518,9 +517,12 @@ sections:
         Choosing the <strong>top quartile</strong> is a reliable way to identify posts with unusually high use of aggressive markers and atypical linguistic patterns. 
         This makes toxicity classification interpretable and consistent across subreddits.</li>
     </ul>
+  <p>
+    Using only the threshold-based classification, we obtain the following cross-counts:
+  </p>
     <img src="{{ '/assets/img/metriccat.png' | relative_url }}" alt="cat before adj" class="center medium">
 
-    <p>
+  <p>
     At first, it appears that the majority of toxic messages are actualy labeled positive, which is not desirable as we explicited that, 
     in our context, toxicity only comes with negativity. However, looking at the <strong>proportions</strong> of toxicity in each sentiment class (right barplot), 
     we see that around 78% of negative messages are labeled toxic, while only 19% of positive messages were. 
@@ -544,7 +546,7 @@ sections:
     distribution of strong language features across both toxic (negative sentiment) and non-toxic (positive sentiment) messages, which can reveal linguistic 
     patterns related to intense discourse beyond just negative intent.    
   </p>
-  
+
   <div class="box-success">
     <strong>Great!</strong> We succesfully designed a reliable continuous metric to measure toxicity intentisy in a message, as well as 
     a binary classifier that distinguishes significantly toxic messages.
