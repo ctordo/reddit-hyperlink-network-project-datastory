@@ -629,27 +629,30 @@ body {
 
 /* Dropdown selector pour study cases */
 .case-selector-container {
-  margin: 25px 0;
+  margin: 30px 0;
   text-align: center;
 }
 
 .case-selector {
-  padding: 12px 20px;
-  font-size: 18px;
-  font-family: 'Georgia', serif;
+  padding: 18px 25px;
+  font-size: 17px;
+  font-family: 'Segoe Print', 'Comic Sans MS', cursive;
+  line-height: 28px;
+  letter-spacing: 0.3px;
+  color: #333;
   background: #fef9e7;
-  border: 2px solid #2c3e50;
-  border-radius: 8px;
+  border: 3px solid #2c3e50;
+  border-radius: 10px;
   cursor: pointer;
-  min-width: 300px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  min-width: 450px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
 }
 
 .case-selector:hover {
   background: #fff9d0;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 }
 
 .case-selector:focus {
@@ -657,16 +660,58 @@ body {
   border-color: #2980b9;
 }
 
+/* Options colorées du menu déroulant */
+.case-selector option {
+  padding: 15px;
+  font-size: 17px;
+  font-family: 'Segoe Print', 'Comic Sans MS', cursive;
+  line-height: 28px;
+}
+
+.case-selector option[value="case1"] {
+  background-color: #e8f4f8;
+}
+
+.case-selector option[value="case2"] {
+  background-color: #fdf5d4;
+}
+
+.case-selector option[value="case3"] {
+  background-color: #d4edda;
+}
+
 /* Contenu des study cases */
 .case-content {
   display: none;
-  animation: fadeIn 0.4s ease-in;
+  animation: fadeIn 0.5s ease-in;
 }
 
 .case-content.active {
   display: block;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .split-container {
+    flex-direction: column;
+  }
+  
+  .split-left {
+    flex: 1;
+    width: 100%;
+  }
+}
 
 
 /* Responsive */
