@@ -582,10 +582,10 @@ sections:
 <section id="propagation" class="section-block">
   <h1>Propagation styles</h1>
   
-  <h3>Statistiques descriptives</h3>
+  <h3>Clustering toxicity propagation</h3>
   <p>
-    To better understand the diversity of toxicity dynamics across Reddit, our team selected a dozen features designed to characterize 
-    how toxicity behaves within and across communities. These included measures such as toxicity over time, toxicity received from other subreddits, 
+    To better understand the diversity of toxicity dynamics across Reddit, <strong>our team selected a dozen features designed to characterize 
+    how toxicity behaves within and across communities</strong>. These included measures such as toxicity over time, toxicity received from other subreddits, 
     toxicity output to others, and additional indicators capturing the intensity and spread of interactions.
   </p>
   <p>
@@ -602,18 +602,47 @@ sections:
   
   <div class="box-content">
     <p>
-    Here would be cool to talk more about the 13 features that we used, the cluseting algorithm etc.
+    Here would be cool to talk more about the 13 features that we used, the cluseting algorithm, the performance (explained var) etc.
   </p>
   </div>
   </div>
 
-  <ol>
-    <li>Cluster</li>
-    <li>Cluster</li>
-    <li>Cluster</li>
-    <li>Cluster</li>
-    <li>Cluster</li>
-  </ol>
+  <table class="toxicity-cluster-table">
+    <thead>
+      <tr>
+        <th>Cluster</th>
+        <th>Characterization</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="cluster-name" style="color:#1f77b4;">Cluster 1</td>
+        <td>Low volume, moderate aggressor, strong recovery</td>
+        <td>123</td>
+      </tr>
+      <tr>
+        <td class="cluster-name" style="color:#ff7f0e;">Cluster 2</td>
+        <td>High volume, persistent aggressor, slow recovery</td>
+        <td>87</td>
+      </tr>
+      <tr>
+        <td class="cluster-name" style="color:#2ca02c;">Cluster 3</td>
+        <td>Moderate volume, isolated bursts, fast recovery</td>
+        <td>95</td>
+      </tr>
+      <tr>
+        <td class="cluster-name" style="color:#d62728;">Cluster 4</td>
+        <td>Low activity, sporadic toxicity, minimal impact</td>
+        <td>142</td>
+      </tr>
+      <tr>
+        <td class="cluster-name" style="color:#9467bd;">Cluster 5</td>
+        <td>High volume, coordinated aggressor, persistent influence</td>
+        <td>68</td>
+      </tr>
+    </tbody>
+  </table>
 
   <p>
   The result of this clustering can be visualized in the following map. This map <strong>is not the geographic representation of Reddit 
@@ -625,7 +654,7 @@ sections:
   <iframe src="assets/interactives/subreddit_clustering_interactive.html" width="100%" height=800px style="border: none;"></iframe>
   
 
-  <h3>Marking clusters on the embeddings map</h3>
+  <h3>Marking clusters on the Reddit map</h3>
   <p>
     We then wanted to see how well the clusters aligned with the geographic structure of the Reddit archipelago: we colored the islands 
     in our original embeddings-derived map according to their toxicity propagation style. 
