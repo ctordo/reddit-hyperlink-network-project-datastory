@@ -46,6 +46,31 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// Gestion du sélecteur de study cases
+document.addEventListener('DOMContentLoaded', function() {
+  const selector = document.getElementById('case-selector');
+  
+  if (selector) {
+    selector.addEventListener('change', function() {
+      // Cacher tous les contenus
+      const allCases = document.querySelectorAll('.case-content');
+      allCases.forEach(c => c.classList.remove('active'));
+      
+      // Afficher le contenu sélectionné
+      const selectedCase = document.getElementById(this.value);
+      if (selectedCase) {
+        selectedCase.classList.add('active');
+      }
+    });
+    
+    // Afficher le premier case par défaut
+    const firstCase = document.querySelector('.case-content');
+    if (firstCase) {
+      firstCase.classList.add('active');
+    }
+  }
+});
+
 // Gestion des boxes dépliables
 document.addEventListener('DOMContentLoaded', function() {
   const collapsibleBoxes = document.querySelectorAll('.box-collapsible');
