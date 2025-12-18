@@ -87,11 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
       this.classList.add('active');
       targetCase.classList.add('active');
 
-      // Scroll doux vers le contenu
-      targetCase.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
     });
   });
 
