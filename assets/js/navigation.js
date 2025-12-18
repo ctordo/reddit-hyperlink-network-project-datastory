@@ -46,61 +46,39 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Gestion du sélecteur de study cases
+// Gestion des épingles sur la carte pour study cases
 document.addEventListener('DOMContentLoaded', function() {
-  const selector = document.getElementById('case-selector');
-  
-  if (selector) {
-    selector.addEventListener('change', function() {
-      // Cacher tous les contenus
-      const allCases = document.querySelectorAll('.case-content');
-      allCases.forEach(c => c.classList.remove('active'));
-      
-      // Afficher le contenu sélectionné
-      const selectedCase = document.getElementById(this.value);
-      if (selectedCase) {
-        selectedCase.classList.add('active');
-      }
-    });
-    
-    // Afficher le premier case par défaut
-    const firstCase = document.querySelector('.case-content');
-    if (firstCase) {
-      firstCase.classList.add('active');
-    }
-  }
-});
-
-// Gestion des épingles sur la carte
   const mapPins = document.querySelectorAll('.map-pin');
   
-  mapPins.forEach(pin => {
-    pin.addEventListener('click', function() {
-      const caseId = this.getAttribute('data-case');
-      
-      // Retirer la classe active de toutes les épingles
-      mapPins.forEach(p => p.classList.remove('active'));
-      
-      // Ajouter la classe active à l'épingle cliquée
-      this.classList.add('active');
-      
-      // Cacher tous les contenus
-      const allCases = document.querySelectorAll('.case-content');
-      allCases.forEach(c => c.classList.remove('active'));
-      
-      // Afficher le contenu correspondant
-      const selectedCase = document.getElementById(caseId);
-      if (selectedCase) {
-        selectedCase.classList.add('active');
-        
-        // Scroll smooth vers le contenu
-        selectedCase.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    });
-  });
-  
-  // Activer la première épingle par défaut
   if (mapPins.length > 0) {
+    mapPins.forEach(pin => {
+      pin.addEventListener('click', function() {
+        const caseId = this.getAttribute('data-case');
+        
+        // Retirer la classe active de toutes les épingles
+        mapPins.forEach(p => p.classList.remove('active'));
+        
+        // Ajouter la classe active à l'épingle cliquée
+        this.classList.add('active');
+        
+        // Cacher tous les contenus
+        const allCases = document.querySelectorAll('.case-content');
+        allCases.forEach(c => c.classList.remove('active'));
+        
+        // Afficher le contenu correspondant
+        const selectedCase = document.getElementById(caseId);
+        if (selectedCase) {
+          selectedCase.classList.add('active');
+          
+          // Scroll smooth vers le contenu
+          setTimeout(() => {
+            selectedCase.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 100);
+        }
+      });
+    });
+    
+    // Activer la première épingle par défaut
     mapPins[0].click();
   }
 });
