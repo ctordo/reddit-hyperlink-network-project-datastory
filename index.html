@@ -351,11 +351,7 @@ sections:
     To understand which properties meaningfully contribute to negative interactions, <strong> we compare normalized mean property values between positive and 
     negative links</strong>. Comparing group means detects systematic differences in linguistic patterns, while normalization accounts for differing scales 
     and distributions across features. Toxicity-related linguistic features are expected to cluster more strongly in negative posts. 
-    Identifying features more common in negative interactions ensures alignment with our conceptual model (toxicity requires negativity)
-  </p>
-  <p>
-  Although this procedure does not infer causality and therefore doesn't replace the qualitative choice of toxicity components, it strongly supports it 
-  by ensuring that we later select variables that are consistent with the requirement of negativity in toxicity.
+    Identifying features more common in negative interactions ensures alignment with our conceptual model (toxicity requires negativity).
   </p>
   
   <div class="box-remark box-collapsible">
@@ -399,24 +395,26 @@ sections:
 
   <iframe src="assets/interactives/property_diffs.html" width="100%" height = "520px" style="border: none;"></iframe>
 
-  <h4>Combining Features Into the Toxicity Metric</h4>
+  <!-- #################################################################################################################################### -->
+  <h3>Toxicity scoring</h3>
 
   <p>
     Based on the conceptual qualitative choice of what defines toxicity and the empirical negativity analysis above, we select a subset of properties 
-    to constitute our toxicity metric. These properties already exist in ratio form (0–1), ensuring comparability.
+    to constitute our toxicity metric and builf a weighted average of them. These properties already exist in ratio form (0–1), ensuring comparability.
   </p>
   
-<div class="box-warning box-collapsible">
+  <div class="box-warning box-collapsible">
   <div class="box-header">
     <div>
-      <code>TOXICITY_SCORE</code>: Continuous metric that measures the toxicity intensity in a subreddit post. Defined as a weighted linear combination of the selected properties.
+      <code>TOXICITY_SCORE</code>: Continuous metric that measures the toxicity intensity in a subreddit post.
     </div>
     <button class="box-toggle" aria-label="Toggle details"></button>
   </div>
   
   <div class="box-content">
     <p>
-    A linear model is appropriate because it balances interpretability (and will allow immediate examination of feature contributions) with simple comparison across subreddits. 
+    Scorring is defined as a weighted linear combination of the selected properties. A linear model is appropriate because it balances interpretability (and will 
+    allow immediate examination of feature contributions) with simple comparison across subreddits. 
     It also supports later scaling, standardization, and model-based refinements. Weights are based on informed judgments from literature on aggressive discourse 
     (e.g., strong weight on anger and swearing; negative weight on cognitive complexity features like insight or cause).
     </p>
@@ -428,9 +426,6 @@ sections:
   </div>
   </div>
 
-<p>
-  <strong>Final weighted average of toxicity score</strong>
-</p>
 <p>
   The following table presents the selected properties to build the toxicity score, with their linear weights. The figure visualizes the relative importance of 
   selected properties in the toxicity scoring; 
@@ -493,28 +488,24 @@ sections:
   <p>
   We now have a reliable, continuous measure of toxicity. But it's not necessarily easy to interpret directly... 
   We would like to accompany this continuous metric with a binary classification: "Is this toxicity score value sufficiently high? 
-  In other words, is this message toxic?"
+  In other words, is this message toxic?" To answer this question, we design a binary classification by passing a threshold on <code>TOXICITY_SCORE</code>.
+  Specifically, the threshod above which messages are flagged as toxic is <strong>the quantile-75 of the toxicity scores distribution</strong>. That is, we 
+  mark as significantly toxic the top 25% messages with highest score. We also enforce that only messages with negative sentiment can be classified as toxic.
   </p>
-
-  <div class="box-warning">
-    <code>TOXICITY_CAT</code>: Categorical metric that classifies posts as non-toxic (0) or toxic (1), obtained by passing a threshold on <code>TOXICITY_SCORE</code>.
-  </div>
-
-  <p>
-    This binary metric is obtaidned by passing a threshold on <code>TOXICITY_SCORE</code>. Specifically, the threshod above which messages 
-    are flagged as toxic is <strong>the quantile-75 of the toxicity scores distribution</strong>. 
-    That is, we mark as significantly toxic the top 25% messages with highest score.
-  </p>
-
-<div class="box-note box-collapsible">
+  
+  
+  <div class="box-warning box-collapsible">
   <div class="box-header">
     <div>
-      <strong>Remark - </strong>Why is the quantile-75 of the distribution interpretable and consistent?
+      <code>TOXICITY_CAT</code>: Categorical metric that classifies posts as non-toxic (0) or toxic (1).
     </div>
     <button class="box-toggle" aria-label="Toggle details"></button>
   </div>
   
   <div class="box-content">
+    <p>
+    Why is the <strong></strong>quantile-75</strong> of the distribution interpretable and consistent?
+    </p>
     <ul>
       <li>Toxic behavior is statistically rare — and tail-based thresholds reflect this. Online toxicity is considered to be heavy-tailed in 
         the sense that most posts are neutral, while toxic ones are relatively rare and concentrated at the upper end of the distribution. 
@@ -527,12 +518,9 @@ sections:
         Choosing the <strong>top quartile</strong> is a reliable way to identify posts with unusually high use of aggressive markers and atypical linguistic patterns. 
         This makes toxicity classification interpretable and consistent across subreddits.</li>
     </ul>
-  </div>
-  </div>
+    <img src="{{ '/assets/img/metriccat.png' | relative_url }}" alt="cat before adj" class="center medium">
 
-  <img src="{{ '/assets/img/metriccat.png' | relative_url }}" alt="cat before adj" class="center medium">
-
-  <p>
+    <p>
     At first, it appears that the majority of toxic messages are actualy labeled positive, which is not desirable as we explicited that, 
     in our context, toxicity only comes with negativity. However, looking at the <strong>proportions</strong> of toxicity in each sentiment class (right barplot), 
     we see that around 78% of negative messages are labeled toxic, while only 19% of positive messages were. 
@@ -546,15 +534,17 @@ sections:
     sometimes contain high levels of features like swearing or anger, classifying them as toxic would introduce significant false positives that 
     do not align with the standard understanding of online harassment or abuse.
   </p>
-
+  </div>
+  </div>
+  
   <p>
-    <strong>Remark - </strong>The continuous <code>TOXICITY_SCORE</code> is preserved even for the links that are ultimately filtered out by the sentiment check. This score serves as a 
+    Note that the continuous <code>TOXICITY_SCORE</code> is preserved even for the links that are ultimately filtered out by the sentiment check. This score serves as a 
     crucial linguistic feature intensity metric, quantifying the sheer presence of aggressive or low-quality language features (e.g., swearing, anger, simplicity) 
     independent of the link's overall "true" sentiment. By keeping the raw score, we retain valuable information for later analysis, such as comparing the 
     distribution of strong language features across both toxic (negative sentiment) and non-toxic (positive sentiment) messages, which can reveal linguistic 
     patterns related to intense discourse beyond just negative intent.    
   </p>
-
+  
   <div class="box-success">
     <strong>Great!</strong> We succesfully designed a reliable continuous metric to measure toxicity intentisy in a message, as well as 
     a binary classifier that distinguishes significantly toxic messages.
