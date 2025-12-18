@@ -18,7 +18,7 @@ sections:
 
 <section id="cover" class="cover-page">
   <div class="title">
-    (chg) Epidemiology of Toxicity in the Reddit Hyperlink Network
+    Epidemiology of Toxicity in the Reddit Hyperlink Network
   </div>
   
   <div class="subtitle">
@@ -556,6 +556,21 @@ sections:
     <strong>Great!</strong> We succesfully designed a reliable continuous metric to measure toxicity intentisy in a message, as well as 
     a binary classifier that distinguishes significantly toxic messages.
   </div>
+
+  <p>
+  Our team could move beyond theory and into observation: 
+  we returned to our initial map of the Reddit archipelago and colored each island (subreddit) according to its toxic interactions count over time. 
+  </p>
+
+  <img src="{{ '/assets/img/subredditembeddingsinit.png' | relative_url }}" alt="subreddit embeddings" class="center large">
+
+  <p>
+  Patterns were clearly emerging! Pockets of intensity appeared, gradients formed across regions, and clusters seemed to pulse with activity.
+  And yet, something was missing... While the map confirmed that something was happening, it did not really <strong>explain</strong> anything yet. 
+  We needed to go beyond raw intensity and focus on structure. Our next step was clear: to identify and cluster the different styles of toxicity propagation 
+  shaping the Reddit space.
+  </p>
+
 </section>
 
 
@@ -569,20 +584,73 @@ sections:
   
   <h3>Statistiques descriptives</h3>
   <p>
-    Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
+    To better understand the diversity of toxicity dynamics across Reddit, our team selected a dozen features designed to characterize 
+    how toxicity behaves within and across communities. These included measures such as toxicity over time, toxicity received from other subreddits, 
+    toxicity output to others, and additional indicators capturing the intensity and spread of interactions.
+  </p>
+  <p>
+  Using these features, we performed a clustering analysis, which revealed a total of five distinct propagation styles.
   </p>
 
+  <div class="box-remark box-collapsible">
+  <div class="box-header">
+    <div>
+      <strong>Remark - </strong>Learn more about our clustering:
+    </div>
+    <button class="box-toggle" aria-label="Toggle details"></button>
+  </div>
+  
+  <div class="box-content">
+    <p>
+    Here would be cool to talk more about the 13 features that we used, the cluseting algorithm etc.
+  </p>
+  </div>
+  </div>
+
+  <ol>
+    <li>Cluster</li>
+    <li>Cluster</li>
+    <li>Cluster</li>
+    <li>Cluster</li>
+    <li>Cluster</li>
+  </ol>
+
+  The result of this clustering can be visualized in the following map. This map <strong>is not the geographic representation of Reddit 
+    from the 300-dimensional embeddings</strong>. Instead, it is a virtual, statistical map in which each point represents a subreddit 
+    positioned according to the similarities in its toxic behavior. In this abstract representation, the five clusters form clearly distinct 
+    regions, making it immediately obvious that different types of toxicity propagation are at play. Hover on the map to explore how islands reorganized!
+  
   <iframe src="assets/interactives/subreddit_clustering_interactive.html" width="100%" height=800px style="border: none;"></iframe>
   
-  <h3>Découvertes principales</h3>
+
+  <h3>Marking clusters on the embeddings map</h3>
   <p>
-    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
+    We then wanted to see how well the clusters aligned with the geographic structure of the Reddit archipelago: we colored the islands 
+    in our original embeddings-derived map according to their toxicity propagation style. 
+  </p>
+  <img src="{{ '/assets/img/subredditembeddingsinit.png' | relative_url }}" alt="subreddit embeddings" class="center large">
+  <p>
+    The result provides a striking view. The immediate observation is that subreddits that are geographically distant in the embedding 
+    space can share similar toxic behavior, while neighboring communities may follow very different dynamics. But at the same time, some regions 
+    clearly display a dominant form of toxicity behavior.
+  </p>
+
+  <div class="box-success">
+    <strong>Great!</strong> This cross-comparison gives us a deeper understanding of how toxicity propagates both locally and across 
+    the thematic landscape of Reddit.
+  </div>
+
+  <p>
+  With the Reddit archipelago fully mapped and the diverse styles of toxicity propagation clearly identified, the terrain was no longer unknown and our instruments were calibrated. 
+  But understanding patterns from afar is only the first step: <strong>true insight comes from going into the field</strong>.
+  </p>
+  <p>
+    Equipped with our clusters and toxicity metrics, we prepared to <strong>conduct focused study cases</strong>. These are targeted, in-depth investigations of smaller regions 
+    within the Reddit landscape, restricted to specific time windows and selected subreddits. 
+    We designed NUMBER study cases. By zooming in on these representative clusters, we aim to capture the dynamics of toxicity in action: which communities amplify it, which absorb it, and how bursts ripple across connected islands.
+    And so, the team embarked on this next stage of the mission: collecting fine-grained evidence and understanding the mechanisms behind toxicity propagation in the Reddit archipelago...
   </p>
   
-  <h3>Observations secondaires</h3>
-  <p>
-    Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
-  </p>
 </section>
 
 
