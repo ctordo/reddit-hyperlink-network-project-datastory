@@ -62,9 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// ==============================
 // Study cases – carte interactive
-// ==============================
+
 document.addEventListener('DOMContentLoaded', function () {
   const pins = document.querySelectorAll('.map-pin');
   const cases = document.querySelectorAll('.case-content');
