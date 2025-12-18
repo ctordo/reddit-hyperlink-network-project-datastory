@@ -6,7 +6,6 @@
 
 body {
   font-family: 'Georgia', serif;
-  /* Fond avec image bois */
   background: url('../img/background.png') center center;
   background-size: cover;
   background-attachment: fixed;
@@ -136,7 +135,7 @@ body {
 }
 
 .cover-page .title {
-  font-size: 54px;
+  font-size: 50px;
   font-weight: bold;
   color: #19191e;
   text-align: center;

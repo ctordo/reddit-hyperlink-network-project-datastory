@@ -2,6 +2,8 @@
 layout: project
 title: Reddit Hyperlink Network Project
 sections:
+  - id: cover
+    title: Cover
   - id: preparation
     title: Preparation
   - id: metric
@@ -16,7 +18,7 @@ sections:
 
 <section id="cover" class="cover-page">
   <div class="title">
-    (chg2) Epidemiology of Toxicity in the Reddit Hyperlink Network
+    Epidemiology of Toxicity in the Reddit Hyperlink Network
   </div>
   
   <div class="subtitle">
@@ -28,7 +30,7 @@ sections:
     in the Reddit space.
   </div>
 
-  <img src="{{ '/assets/img/redditdraw.png' | relative_url }}" alt="reddit draw" class="center map">
+  <img src="{{ '/assets/img/redditdrawalt.png' | relative_url }}" alt="reddit draw" class="center map">
 
   
   <table class="doctors-table">
@@ -350,8 +352,8 @@ sections:
 
   <p>
     To understand which properties meaningfully contribute to negative interactions, <strong> we compare normalized mean property values between positive and 
-    negative links</strong>. Comparing group means detects systematic differences in linguistic patterns, while normalization accounts for differing scales 
-    and distributions across features. Toxicity-related linguistic features are expected to cluster more strongly in negative posts. 
+    negative links</strong>. Comparing group means detects systematic differences in linguistic patterns (and normalization accounts for differing scales 
+    and distributions across features). We naturally expect toxicity-related linguistic features to cluster more strongly in negative posts. 
     Identifying features more common in negative interactions ensures alignment with our conceptual model (toxicity requires negativity).
   </p>
   
@@ -647,7 +649,7 @@ sections:
   The result of this clustering can be visualized in the following map. This map <strong>is not the geographic representation of Reddit 
     from the 300-dimensional embeddings</strong>. Instead, it is a virtual, statistical map in which each point represents a subreddit 
     positioned according to the similarities in its toxic behavior. In this abstract representation, the five clusters form clearly distinct 
-    regions, making it immediately obvious that different types of toxicity propagation are at play. Hover on the map to explore how islands reorganized!
+    regions, making it immediately obvious that <strong>different types of toxicity propagation are at play</strong>. Hover on the map to explore how islands reorganized!
   </p>
 
   <iframe src="assets/interactives/subreddit_clustering_interactive.html" width="100%" height=720px style="border: none;"></iframe>
