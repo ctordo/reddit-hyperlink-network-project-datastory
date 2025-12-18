@@ -1,102 +1,63 @@
-document.addEventListener('DOMContentLoaded', () => {
-  initNavigation();
-  initMapPins();
-  initCollapsibles();
-});
-
-/* ============================
-   NAVIGATION SCROLL + ACTIVE LINK
-   ============================ */
-function initNavigation() {
-  const sections = document.querySelectorAll('.section-block');
+// Détection de la section active au scroll
+document.addEventListener('DOMContentLoaded', function() {
+  const sections = document.querySelectorAll('.section-block, .cover-page');
   const navLinks = document.querySelectorAll('.fixed-nav a');
-
-  if (!sections.length || !navLinks.length) return;
-
+  
   function updateActiveLink() {
     let currentSection = '';
-
+    
     sections.forEach(section => {
-      if (window.pageYOffset >= section.offsetTop - 120) {
-        currentSection = section.id;
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      
+      if (window.pageYOffset >= sectionTop - 100) {
+        currentSection = section.getAttribute('id');
       }
     });
-
+    
     navLinks.forEach(link => {
-      const target = link.getAttribute('href');
-      link.classList.toggle('active', target === `#${currentSection}`);
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + currentSection) {
+        link.classList.add('active');
+      }
     });
   }
-
+  
+  // Mettre à jour au scroll
   window.addEventListener('scroll', updateActiveLink);
+  
+  // Mettre à jour au chargement
   updateActiveLink();
-
+  
+  // Smooth scroll pour les liens
   navLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      const targetId = link.getAttribute('href')?.substring(1);
-      const targetSection = document.getElementById(targetId);
-
-      if (!targetSection) return;
-
+    link.addEventListener('click', function(e) {
       e.preventDefault();
-
-      window.scrollTo({
-        top: targetSection.offsetTop - 20,
-        behavior: 'smooth'
-      });
+      const targetId = this.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      
+      if (targetSection) {
+        window.scrollTo({
+          top: targetSection.offsetTop - 20,
+          behavior: 'smooth'
+        });
+      }
     });
   });
-}
+});
 
-/* ============================
-   INTERACTIVE MAP PINS
-   ============================ */
-function initMapPins() {
-  const mapPins = document.querySelectorAll('.map-pin');
-  const allCases = document.querySelectorAll('.case-content');
-
-  if (!mapPins.length || !allCases.length) return;
-
-  mapPins.forEach(pin => {
-    pin.addEventListener('click', () => {
-      const caseId = pin.dataset.case;
-      const selectedCase = document.getElementById(caseId);
-
-      if (!selectedCase) return;
-
-      // Active pin
-      mapPins.forEach(p => p.classList.remove('active'));
-      pin.classList.add('active');
-
-      // Active content
-      allCases.forEach(c => c.classList.remove('active'));
-      selectedCase.classList.add('active');
-
-      // Smooth scroll to content
-      selectedCase.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest'
-      });
-    });
-  });
-
-  // Activate first pin by default
-  mapPins[0]?.click();
-}
-
-/* ============================
-   COLLAPSIBLE BOXES
-   ============================ */
-function initCollapsibles() {
-  const boxes = document.querySelectorAll('.box-collapsible');
-  if (!boxes.length) return;
-
-  boxes.forEach(box => {
+// Gestion des boxes dépliables
+document.addEventListener('DOMContentLoaded', function() {
+  const collapsibleBoxes = document.querySelectorAll('.box-collapsible');
+  
+  collapsibleBoxes.forEach(box => {
     const toggle = box.querySelector('.box-toggle');
-    if (!toggle) return;
-
-    toggle.addEventListener('click', () => {
-      box.classList.toggle('expanded');
-    });
+    const content = box.querySelector('.box-content');
+    
+    if (toggle && content) {
+      toggle.addEventListener('click', function() {
+        box.classList.toggle('expanded');
+      });
+    }
   });
-}
+});
