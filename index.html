@@ -626,7 +626,7 @@ sections:
   <div class="box-remark box-collapsible">
   <div class="box-header">
     <div>
-      <strong>Remark - </strong>Learn more about features used for clustering:
+      <strong>Remark - </strong> What are the selected features used for clustering?
     </div>
     <button class="box-toggle" aria-label="Toggle details"></button>
   </div>
@@ -682,24 +682,24 @@ sections:
   </p>
 
 
-<div class="box-remark box-collapsible">
+<div class="box-error box-collapsible">
   <div class="box-header">
     <div>
-      <strong>Remark - </strong>Preprocessing essentials:
+      <strong>Preprocessing essentials</strong>:
     </div>
     <button class="box-toggle" aria-label="Toggle details"></button>
   </div>
   
   <div class="box-content">
     <ul>
-        <li>Low-activity filter: keep only subreddits with at least 10 toxic interactions.<br>This avoids unstable temporal statistics (e.g., gap variability from 2–3 events).</li>
-        <li>Log compression (heavy-tailed counts/spans/degrees): X' = log(1 + X). <br>This reduces the dominance of a few very large 
+        <li><strong>Low-activity filter</strong>: keep only subreddits with at least 10 toxic interactions.<br>This avoids unstable temporal statistics (e.g., gap variability from 2–3 events).</li>
+        <li><strong>Log compression</strong> (heavy-tailed counts/spans/degrees): X' = log(1 + X). <br>This reduces the dominance of a few very large 
             communities in Euclidean distances and PCA.</li>
-        <li>Winsorization (bounded percentages): cap extreme values to limit leverage.<br>Useful for ratio-like features (“% recent”) 
+        <li><strong>Winsorization</strong> (bounded percentages): cap extreme values to limit leverage.<br>Useful for ratio-like features (“% recent”) 
             where a some edge cases can skew centroids.</li> 
-        <li>Mega flag: mark the top 1% on raw activity/degree as <code>is_mega</code>.<br>We keep mega-subreddits in clustering, 
+        <li><strong>Mega flag</strong>: mark the top 1% on raw activity/degree as <code>is_mega</code>.<br>We keep mega-subreddits in clustering, 
             but track them explicitly for interpretation.</li>
-        <li>Standard scaling: (X − µ) / σ so units contribute comparably.<br>K-Means and PCA are distance/variance-driven so 
+        <li><strong>Standard scaling</strong>: (X − µ) / σ so units contribute comparably.<br>K-Means and PCA are distance/variance-driven so 
             scaling prevents “days” or “counts” from winning by default.</li>
     </ul>
   </div>
@@ -734,7 +734,7 @@ sections:
   <div class="box-remark box-collapsible">
   <div class="box-header">
     <div>
-      <strong>Remark - </strong>Learn more about how we determined the optimal K:
+      <strong>Remark - </strong>How do we determine the optimal K?
     </div>
     <button class="box-toggle" aria-label="Toggle details"></button>
   </div>
@@ -828,22 +828,22 @@ sections:
       <tr>
         <td class="cluster-name" style="color:#d62728;">Cluster 0</td>
         <td>Moderate-volume Agressor - Mixed</td>
-        <td>228</td>
+        <td>228 (including 1 Mega)</td>
       </tr>
       <tr>
         <td class="cluster-name" style="color:#579cf7;">Cluster 1</td>
         <td>Moderate-volume Victim-leaning - Mixed</td>
-        <td>636</td>
+        <td>636 (0 Mega)</td>
       </tr>
       <tr>
         <td class="cluster-name" style="color:#2ca02c;">Cluster 2</td>
         <td>High-volume Balanced (Hub) - Bursty</td>
-        <td>302</td>
+        <td>302 (including 24 Mega) </td>
       </tr>
       <tr>
         <td class="cluster-name" style="color:#ff7f0e;">Cluster 3</td>
         <td>Low-volume Victim - Mixed</td>
-        <td>198</td>
+        <td>198 (including 1 Mega)</td>
       </tr>
     </tbody>
   </table>
@@ -869,7 +869,8 @@ sections:
         <li>
             <strong><span style="color: #2ca02c;">Cluster 2</span>: High-volume Balanced (Hub) – Bursty</strong> <br>
             Highly active communities with intense, reciprocal toxic exchanges occurring in short bursts. <br>
-            <u>Interpretation:</u> central hubs where major conflicts erupt, often triggered by external events.
+            <u>Interpretation:</u> central hubs where major conflicts erupt, often triggered by external events. 
+            The bursty behavior is explained as this cluster contains most Mega-subreddits.
         </li>
         <li>
             <strong><span style="color: #ff7f0e;">Cluster 3</span>: Low-volume Victim – Mixed</strong> <br>
@@ -881,7 +882,7 @@ sections:
   <div class="box-remark box-collapsible">
   <div class="box-header">
     <div>
-      <strong>Remark - </strong>:
+      <strong>Remark - </strong>: How do we assign labels (pattern, role, volume)?
     </div>
     <button class="box-toggle" aria-label="Toggle details"></button>
   </div>
@@ -901,7 +902,7 @@ sections:
         <li><strong>Moderate-volume</strong> if Q0.33 < median <= Q0.67.</li>
         <li><strong>Low-volume</strong> otherwise</li>
     </ul>
-    <p><strong>Role label (aggressor / victim / balanced / leaning)</strong>: we compare outgoing vs incoming toxicity using the 
+    <p><strong>• Role label (aggressor / victim / balanced / leaning)</strong>: we compare outgoing vs incoming toxicity using the 
         relative imbalance computed on cluster medians <code>diff_ratio = abs(src - tgt) / (src + tgt)</code>, then assign:</p>
     <ul class = "ulpack">
         <li><strong>Balanced (Hub)</strong>  if <code>diff_ratio</code> < 0.20</li>
@@ -909,7 +910,7 @@ sections:
         <li><strong>Aggressor-leaning or Victim-leaning</strong> if 0.20 <= <code>diff_ratio</code> < 0.50.</li>
         <li><strong>Inactive</strong> if <code>src + tgt</code> = 0.</li>
     </ul>
-    <p><strong>Mega-subreddits</strong>: We print how they distribute across clusters (transparency, not a separate type).</p>
+    <p><strong>• Mega-subreddits</strong>: We print how they distribute across clusters (transparency, not a separate type).</p>
   </div>
   </div>
 
