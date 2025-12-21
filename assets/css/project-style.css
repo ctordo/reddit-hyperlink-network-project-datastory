@@ -418,6 +418,20 @@ body {
   margin-bottom: 8px;
 }
 
+/* Liste compacte - moins d'espacement vertical */
+.section-block ul.ulpack,
+.section-block ol.olpack {
+  margin-left: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.section-block ul.ulpack li,
+.section-block ol.olpack li {
+  margin-bottom: 3px;
+  line-height: 22px;
+}
+
 /* Images */
 .section-block img {
   max-width: 100%;

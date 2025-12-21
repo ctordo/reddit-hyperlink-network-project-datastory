@@ -861,7 +861,10 @@ sections:
   
   <div class="box-content">
   <img src="{{ '/assets/img/toxic_event_classes.png' | relative_url }}" alt="classes" class="center small">
-  <ul>
+  <p style="text-align: center;">
+      Figure: Toxic event classes
+    </p>
+  <ul class = "ulpack">
       <li>a) Single Victim, Multiple Prosecutors</li>
       <li>b) Multiple Victims, Single Prosecutors </li>
       <li>c) Multiple Victims, Multiple Prosecutors</li>
@@ -1211,13 +1214,49 @@ sections:
     <div class="box-remark box-collapsible">
     <div class="box-header">
     <div>
-      SOMETHING HERE
+      Learn more about the working principle of PCMCI:
     </div>
     <button class="box-toggle" aria-label="Toggle details"></button>
     </div>
   
     <div class="box-content">
-    <p> SHIT SHIT SHIT.
+    <p>
+        PCMCI: Distinguish causal relationships (based on time series data, from spurious correlations) by taking into account 
+        autocorrelation and confounding variables.
+    </p>
+    <p>
+        1/ PC Phase
+    </p>
+    <ul class="ulpack">
+        <li>Uses a simplified PC algorithm to identify a set of potential parents for each variable</li>
+        <li>For each variable, tests conditional independence with lagged versions of all variables</li>
+        <li>Iteratively removes spurious links by conditioning on increasingly larger sets of past variables</li>
+        <li>Output: A preliminary causal graph with candidate parent sets for each variable</li>
+    </ul>
+    <p>
+        2/ MCI Phase
+    </p>
+    <ul class="ulpack">
+        <li>Refines the results from the PC phase</li>
+        <li>For each remaining link, performs a more rigorous conditional independence test</li>
+        <li>Conditions on the parents identified in the PC phase to determine if the link is truly causal</li>
+        <li>Tests independence at specific time lags</li>
+        <li>Output: Final causal graph with strength and significance of causal links</li>
+    </ul>
+    <img src="{{ '/assets/img/pcmci_steps.png' | relative_url }}" alt="pcmci" class="center medium">
+    <p style="text-align: center;">
+      Figure: PCMCI steps. Red nodes: conditioning set for X³_t; Blue nodes: conditioning set for X¹_t; Star: False Positives. 
+      (Adapted from [1])
+    </p>
+    <p>
+        Different conditional independence tests can be used, including partial correlation (linear gaussian), rank-based/robust 
+        partial correlation, GPDC (nonlinear dependence via Gaussian processes), CMIknn (General conditional), Regression Conditional 
+        Independence (residual independence after regression) and Partial Correlation with Weighted Least Square. In our case, the 
+        robust partial correlation makes more sense, as it is usually used for social interaction data. Note however that it may miss 
+        nonlinear dependencies.
+    </p>
+    <p>
+        The tigramite library is used to perform PCMCI on our time series data (see [2]).
     </p>
     </div>
     </div>
@@ -1225,7 +1264,7 @@ sections:
     <div class="box-error box-collapsible">
     <div class="box-header">
     <div>
-      ANOTHER ONE HERE
+      More details on how to interpret the networks:
     </div>
     <button class="box-toggle" aria-label="Toggle details"></button>
     </div>
@@ -1276,6 +1315,18 @@ sections:
     </ul>
     </div>
     </div>
+
+    <p>
+      We construct 2 causal graphs: 
+    </p>
+    <ul>
+        <li>one to assess causality between the toxic interaction time series of the protagonist and the non-toxic interaction time series of 
+            relevant subreddits,</li>
+        <li>the other to assess causality between the toxic interaction time series of the protagonist and the toxic interaction time series of relevant subreddits.</li>
+    </ul>
+    <p>
+      They give information about how other subreddits cause toxic interactions in the protagonist time series, from their non-toxic interactions (i.e. as catalysts) and from their toxic interactions (i.e. as prosecutors).
+    </p>
 
     <!-- Contenu spécifique : Life Cycle analysis -->
     <div class="case-specific-content" data-case="case1">
