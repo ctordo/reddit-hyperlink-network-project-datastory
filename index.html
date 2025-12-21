@@ -511,7 +511,7 @@ sections:
     </iframe>
   </div>
 </div>
-  
+
   <!-- #################################################################################################################################### -->
   <h3>Toxicity binary classification</h3>
   <p>
@@ -608,28 +608,148 @@ sections:
 <section id="propagation" class="section-block">
   <h1>Propagation styles</h1>
   
-  <h3>Clustering toxicity propagation</h3>
+  <h3>Clustering toxicity propagation to identify variants</h3>
   <p>
-    To better understand the diversity of toxicity dynamics across Reddit, <strong>our team selected a dozen features designed to characterize 
-    how toxicity behaves within and across communities</strong>. These included measures such as toxicity over time, toxicity received from other subreddits, 
-    toxicity output to others, and additional indicators capturing the intensity and spread of interactions.
+    As the investigation progressed, it became clear that the virus did not spread in a single, uniform 
+    way. Much like a pathogen with multiple strains, toxicity exhibited distinct temporal and behavioral 
+    patterns across the Reddit archipelago. Some communities acted as chronic carriers, others showed 
+    sudden outbreaks, while some primarily received or reciprocated toxic interactions. 
   </p>
-  <p>
-  Using these features, we performed a clustering analysis, which revealed a total of five distinct propagation styles.
+  <p> 
+    To identify these variants, our team selected a set of features capturing toxicity over time, 
+    incoming and outgoing toxicity, and the intensity and reach of interactions between communities. By 
+    clustering subreddits based on these indicators, we uncovered <strong>four distinct propagation styles</strong>, each 
+    representing a different “variant” in how toxicity emerges, persists, and spreads across the network. 
   </p>
 
   <div class="box-remark box-collapsible">
   <div class="box-header">
     <div>
-      <strong>Remark - </strong>Learn more about our clustering:
+      <strong>Remark - </strong>Learn more about features used for clustering:
     </div>
     <button class="box-toggle" aria-label="Toggle details"></button>
   </div>
   
   <div class="box-content">
+    <p><strong>Source (agressor) temporal features</strong></p>
+    <ul class = "ulpack">
+        <li><code>src_tox_count</code>: Total number of toxic interactions sent.</li>
+        <li><code>src_active_span_days</code>: Duration between the first and last toxic interaction sent.</li>
+        <li><code>src_median_gap_days</code>: Median time gap between consecutive sent toxic interactions.</li>
+        <li><code>src_gap_cv</code>: Variability of time gaps between sent toxic events.</li>
+        <li><code>src_max_30d_count</code>: Maximum number of toxic interactions within any 30-day window.</li>
+        <li><code>src_event_rate</code>: Average rate of sent toxic interactions over the active period.</li>
+        <li><code>src_pct_events_recent</code>: Proportion of sent toxic interactions occurring in the most recent period.</li>
+    </ul>
+    <p><strong>Target (victim) temporal features</strong></p>
+    <ul class = "ulpack">
+        <li><code>tgt_tox_count</code>: Total number of toxic interactions received.</li>
+        <li><code>tgt_active_span_days</code>: Duration between the first and last toxic interaction received.</li>
+        <li><code>tgt_median_gap_days</code>: Median time gap between consecutive received toxic interactions.</li>
+        <li><code>tgt_gap_cv</code>: Variability of time gaps between received toxic events.</li>
+        <li><code>tgt_pct_events_recent</code>: Proportion of received toxic interactions occurring in the most recent period.</li>
+    </ul>
     <p>
-    Here would be cool to talk more about the 13 features that we used, the cluseting algorithm, the performance (explained var) etc.
+        These temporal features capture differences between sustained and episodic behavior, regular 
+        versus bursty activity, and increasing or declining toxicity over time.
+    </p>
+    <p><strong>Network features</strong></p>
+    <ul class = "ulpack">
+        <li><code>net_out_degree</code>: Number of distinct subreddits targeted by toxic interactions.</li>
+        <li><code>net_in_degree</code>: Number of distinct subreddits sending toxic interactions.</li>
+        <li><code>net_reciprocity</code>: Proportion of bidirectional toxic relationships.</li>
+    </ul>
+    <p>
+        Network features describe how subreddits are embedded in the toxicity network and help 
+        distinguish isolated aggressors, frequent targets, reciprocal conflicts, and highly connected 
+        communities.
+    </p>
+    <p>
+        Together, these features provide a multidimensional representation of toxic behavior, enabling 
+        clustering based on behavioral patterns rather than simple toxicity volume.
+    </p>
+  </div>
+  </div>
+
+
+  <!-- PART OF CEDRIC -->  
+  
+  
+  
+  
+  <h4>Reduction through PCA</h4>
+
+  <p>
+    Even with redundant symptoms removed, we're still tracking 14 different behavioral indicators per
+    community. That's a lot of data to process when trying to identify distinct virus variants.
   </p>
+  <p>
+    Principal Component Analysis (PCA) helps us lower the 14 measurements down to the core patterns
+    that really matter. We are trying to identify key symptoms that define a disease: instead of tracking
+    every minor detail, we focus on the fundamental signatures that distinguish one variant from
+    another.
+  </p>
+  <p>
+    We keep enough components to capture 80% of the behavioral variance, basically retaining the most
+    important diagnostic information while filtering out noise. This gave us 6 core "behavioral markers"
+    that efficiently represent how different communities engage with toxic behavior, making variant
+    classification clearer and more reliable.
+  </p>
+  
+  <h4>Clustering with KMeans</h4>
+
+  <p>
+    With our refined behavioral profiles ready, we can finally classify communities into distinct toxicity 
+    variants. We use K-Means clustering, an algorithm that groups communities with similar behavioral patterns 
+    together. K-Means works well here because it efficiently handles our continuous measurements and 
+    produces clear, interpretable variant types.
+  </p>
+
+
+  <div class="box-remark box-collapsible">
+  <div class="box-header">
+    <div>
+      <strong>Remark - </strong>Learn more about how we determined the optimal K:
+    </div>
+    <button class="box-toggle" aria-label="Toggle details"></button>
+  </div>
+  
+  <div class="box-content">
+    <p><strong>The key challenge: determining how many distinct variants exist in our data.</strong></p>
+    <p>How many toxicity variants are circulating in the Reddit archipelago? Too few categories and we'll 
+        miss important distinctions between different strains. Too many and we'll see differences where 
+        none truly exist.</p>
+    <p>
+        We test different numbers of variants (K = 2 through 10) using two diagnostic measures:
+    </p>
+    <ul>
+        <li><strong>Silhouette score: </strong> Measures how well each community fits its assigned variant compared to other 
+            variants. For each community <i>i</i> in variant <i>C<sub>i</sub></i>:
+        
+            <p style="text-align: center;">
+                <i>s(i)</i> = (<i>b(i)</i> - <i>a(i)</i>) / max(<i>a(i)</i>, <i>b(i)</i>)
+            </p>
+
+            where <i>a(i)</i> is the average distance to other communities in the same variant (cohesion), and <i>b(i)</i> is 
+            the average distance to the nearest other variant (separation). Scores range from -1 to +1, with higher values 
+            indicating clearer, more distinct behavioral types.
+        </li>
+        <li><strong>Balance: </strong>  Measures how evenly communities are distributed across variants, calculated as the ratio of 
+            smallest to largest variant size. A balance near 1 means roughly equal variant populations; near 0  
+            means one dominant "catch-all" group—likely not a real distinction.
+        </li>
+    </ul>
+
+    <p>
+        We also run <strong>100 stability tests</strong> for each K value using the Adjusted Rand Index (ARI) to ensure variant classifications are consistent 
+        and reproducible—not just random artifacts.
+    </p>
+    <p>
+        After systematic evaluation, </strong>K = 4</strong> emerges as optimal: high clustering 
+        quality (silhouette ≈ 0.4), reasonable balance, and excellent stability (94% consistency across runs). Four distinct toxicity 
+        variants, each representing a genuine behavioral archetype.
+    </p>
+
   </div>
   </div>
 
@@ -1322,21 +1442,108 @@ sections:
       <iframe src="assets/interactives/studycases/CS1/CS1_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
       <iframe src="assets/interactives/studycases/CS1/CS1_8_PCMCI_negative.html" width="100%" height = "440px" style="border: none;"></iframe>
       <p>
-        MISSING LCA FOR CS1
+        From these causal graphs, we can identify subreddits having a direct effect on the protagonist. The entire graph shows a complex 
+        web of causality, which is expected since we work with complex social data.
+      </p>
+      <p>
+        A very interesting finding lies in the effect of non-toxic interactions from subreddits that have a direct impact on the 
+        protagonist’s toxic interactions. Among others, 'conspiracy' and 'anarchism' exhibit a positive correlation in this sense, 
+        meaning they act as catalysts. On the other hand, 'adviceanimals' appears to have an attenuating effect on the toxic trend 
+        at first (1-day lag).
+      </p>
+      <p>
+        The protagonist itself also has an effect on others, meaning that other subreddits may follow its trend due to its 
+        influence. This is the case for 'adviceanimals', which is positively correlated with the protagonist after some time 
+        (3-day lag). This highlights an interesting dynamic, where the effect of one subreddit on another is not symmetric in 
+        the opposite direction.
+      </p>
+      <p>
+        Furthermore, the protagonist’s trend is negatively correlated with the trends of non-toxic interactions in 'pics' and 
+        'relationships', indicating that the number of non-toxic interactions drops when the number of toxic interactions of 
+        the protagonist increases. No calming links were highlighted here (i.e., non-toxic time series negatively correlated 
+        with the toxic time series of the protagonist), which suggests a passive decay of the toxic event.
+      </p>
+      <p>
+        The second causal graph confirms the aggressor behavior of the protagonist. Indeed, its positively correlated directed 
+        links towards 'conspiracy', 'pics', and 'hiphopheads' indicate a propagation of its own toxic trend. It also appears to 
+        be influenced by other subreddits, such as 'drama', 'worldnews', and 'relationships'. An especially interesting causal 
+        link is observed with 'anarchism', which shows a strong negative correlation towards the protagonist. This suggests that 
+        toxic interactions within 'anarchism' lead to a significant drop in the number of toxic interactions of the protagonist 
+        after approximately 2.5 days. This could indicate that 'anarchism' acts as a toxic attenuator, calming the trend through 
+        toxic interactions.
       </p>
     </div>
     <div class="case-specific-content" data-case="case2">
       <iframe src="assets/interactives/studycases/CS2/CS2_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
       <iframe src="assets/interactives/studycases/CS2/CS2_8_PCMCI_negative.html" width="100%" height = "440px" style="border: none;"></iframe>
       <p>
-        MISSING LCA FOR CS2
+        From these causal graphs, we can identify subreddits having a direct effect on the protagonist. The entire graph shows a 
+        complex web of causality, which is expected since we work with complex social data.
+      </p>
+      <p>
+        The first graph reveals an intricate interaction between the protagonist ('science') and four other subreddits. 
+        Notably, 'everythingscience' was previously identified as an additional victim alongside 'science', while 'badsocialscience' 
+        was identified primarily as an aggressor, although it also received some toxic interactions. Here, we observe that the number 
+        of toxic interactions of 'science' is highly correlated with non-toxic interactions of 'everythingscience' and 'badscience', 
+        suggesting that toxic interactions of 'science' propagate to others via non-toxic interactions with a small lag (12 hours).
+      </p>
+      <p>
+        The strong negative correlation with 'conspiracy' indicates that a toxic event affecting 'science' leads to a corresponding 
+        decrease in the number of non-toxic interactions of 'conspiracy'. Finally, the 'badsocialscience' subreddit shows a highly 
+        correlated link towards the toxic interactions of the protagonist, indicating that its non-toxic interactions are likely to 
+        trigger a toxic event involving the protagonist. We can therefore assess that 'science' is indeed part of a victim group, 
+        and that 'badsocialscience' contributed to this toxic outbreak. No calming links were identified here, suggesting once again 
+        a passive decay of the toxic event.
+      </p>
+      <p>
+        The second graph provides additional insight. In particular, the 'badscience' subreddit emerges as one of the most likely 
+        patient-zero candidates. Its low-lag, highly correlated link towards the protagonist suggests strongly coupled dynamics 
+        and thus a significant influence. We can also highlight the important influence of the protagonist on 'badsocialscience' 
+        and 'conspiracy', as previously mentioned.
+      </p>
+      <p>
+        A particularly interesting dynamic appears in the time-varying nature of the 'science' → 'badsocialscience' link: it is 
+        strongly positively correlated at low lags (6 hours) and strongly negatively correlated at higher lags (24 hours). 
+        Lastly, we observe that 'conspiracy' is positively correlated, indicating that not only do non-toxic interactions 
+        decrease when the protagonist’s toxic interactions increase, but its toxic interactions increase as well. We can therefore 
+        conclude that 'conspiracy' plays the role of a prosecutor, as suggested in the top-subreddit-interactors analysis.
+      </p>
+      <p>
+        Note that 'brain_damage' was identified as a false positive, as it exhibits no causal links with any other subreddit, 
+        neither through non-toxic nor toxic interactions.
       </p>
     </div>
     <div class="case-specific-content" data-case="case3">
       <iframe src="assets/interactives/studycases/CS3/CS3_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
       <iframe src="assets/interactives/studycases/CS3/CS3_8_PCMCI_negative.html" width="100%" height = "440px" style="border: none;"></iframe>
       <p>
-        MISSING LCA FOR CS3
+        From these causal graphs, we can identify subreddits having a direct effect on the protagonist. The entire graph shows a 
+        complex web of causality, which is expected since we work with complex social data.
+      </p>
+      <p>
+        The first graph reveals an intricate set of interactions between the protagonist ('drama') and several other subreddits. 
+        Since we previously identified this subreddit as an aggressor allied with 'subredditdrama' and 'bettersubredditdrama', 
+        we focus primarily on these links. We observe that 'drama' is influenced by several catalysts. In particular, the number 
+        of non-toxic interactions of 'anarchism' is positively correlated with its toxic interactions, suggesting that 
+        'anarchism' may act as a patient-zero.
+      </p>
+      <p>
+        We can also observe the effect of the protagonist on others. Notably, 'subredditdrama' and 'bettersubredditdrama' 
+        show a decrease in the number of non-toxic interactions when 'drama' exhibits increasing toxic interactions, 
+        suggesting a coupled dynamic among allied subreddits, as previously conjectured.
+      </p>
+      <p>
+        The second graph highlights a tight relationship between the main drama-related subreddits, including 'subredditdrama', 
+        'mildredditdrama', and 'drama'. This confirms our hypothesis regarding their alliance-type dynamics. The role of the 
+        protagonist as an aggressor is further supported by its direct influence on the toxic interaction time series of 
+        'relationships', which was identified as one of several victims.
+      </p>
+      <p>
+        Finally, we observe the presence of a negative autocorrelation link, indicating a self-calming behavior of the 
+        protagonist. This suggests that the toxic event ended through a low-activity decay.
+      </p>
+      <p>
+        No false positives were identified in this case.
       </p>
     </div>
 
@@ -1352,17 +1559,59 @@ sections:
     <!-- Contenu spécifique : Conclusion -->
     <div class="case-specific-content" data-case="case1">
       <p>
-        MISSING CONCLUSION FOR CS1
+        To put it in a nutshell, we managed to confirm the aggressor behavior of the 'betterdramasubreddit' subreddit through a 
+        specific, in-depth case study. Its relatively low lifespan revealed the existence of an all-time toxic subject that strongly 
+        impacts other communities. We identified the nature of the toxic event as a long-term toxic outbreak, and clearly 
+        highlighted its victims as well as its most active interaction network.
+      </p>
+      <p>
+        We completed our study by providing insights into the propagation agents, removing false positives, identifying potential 
+        patient-zero candidates, and characterizing the death type of the event (passive, natural). Through this work, we gathered 
+        valuable information that helps us better understand the toxicity phenomenon and confirms our conjecture regarding the 
+        existence of distinct toxicity variants.
+      </p>
+      <p>
+        This case study also emphasizes the presence of complex and highly interconnected networks, for which the most reasonable 
+        response to such outbreaks would be moderation of interactions rather than isolated interventions. Actions ranging from 
+        simple verification of interaction toxicity to quarantine-like mechanisms are therefore strongly supported.
       </p>
     </div>
     <div class="case-specific-content" data-case="case2">
       <p>
-        MISSING CONCLUSION FOR CS2
+        To put it in a nutshell, we managed to confirm the victim behavior of the 'science' subreddit through a specific, in-depth 
+        example. The highly bursty nature of its toxic event demonstrated that such a phenomenon exists and follows dynamics 
+        distinct from long-term outbreaks. We identified this event as a bursty toxic event and highlighted its prosecutors, as 
+        well as the most relevant interaction network involved in the outbreak.
+      </p>
+      <p>
+        We completed our study by providing insights into the propagation agents, again removing false positives, identifying 
+        potential patient-zero candidates, and determining the death type of the event (passive, natural). These findings further 
+        contribute to our understanding of toxicity dynamics and reinforce our hypothesis regarding multiple variants of toxic behavior.
+      </p>
+      <p>
+        As in CS1, this case underscores the existence of intricate interaction networks, suggesting that effective mitigation 
+        strategies should focus on moderating inter-community interactions. Measures such as toxicity-aware filtering or 
+        quarantine-like controls appear well justified in this context.
       </p>
     </div>
     <div class="case-specific-content" data-case="case3">
       <p>
-        MISSING CONCLUSION FOR CS3
+        To put it in a nutshell, we managed to confirm the aggressor behavior of the 'drama' subreddit through a specific, 
+        in-depth case study. We demonstrated the existence of allied aggressor communities, and highlighted their tight 
+        dynamics extending beyond purely toxic interactions. We identified this event as a long-term toxic outbreak, and 
+        mapped its victims, its most active interaction network, and its allied subreddits.
+      </p>
+      <p>
+        We completed our study by providing insights into the propagation agents, removing false positives, identifying potential 
+        patient-zero candidates, and characterizing the death type of the outbreak as low-active and mostly natural. These 
+        results further validate our conjecture regarding toxicity variants and emphasize the role of coordinated dynamics 
+        between communities.
+      </p>
+      <p>
+        Once again, this case illustrates the complexity of Reddit’s interaction networks. As with the previous studies, our 
+        findings strongly support the idea that moderation of interactions—rather than isolated content removal—would be the 
+        most effective strategy to mitigate such toxic outbreaks.
+
       </p>
     </div>
 
