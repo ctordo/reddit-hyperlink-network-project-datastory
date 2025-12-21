@@ -798,6 +798,38 @@ body {
   animation: fadeIn 0.5s ease-in;
 }
 
+/* Bouton retour à la carte */
+.back-to-map-btn {
+  display: block;
+  margin: 40px auto 20px;
+  padding: 15px 30px;
+  background: #2c3e50;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Georgia', serif;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
+}
+
+.back-to-map-btn:hover {
+  background: #34495e;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.back-to-map-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-map-btn::before {
+  content: '↑ ';
+  font-size: 20px;
+}
+
 
 @keyframes fadeIn {
   from {

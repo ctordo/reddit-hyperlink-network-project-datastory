@@ -102,4 +102,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Activer la première épingle par défaut
     mapPins[0].click();
   }
+  // Bouton retour à la carte
+  const backToMapBtn = document.getElementById('back-to-map-btn');
+  if (backToMapBtn) {
+    backToMapBtn.addEventListener('click', function() {
+      const mapContainer = document.querySelector('.case-map-container');
+      if (mapContainer) {
+        mapContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  }
 });
