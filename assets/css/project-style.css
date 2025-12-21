@@ -396,6 +396,11 @@ body {
   font-style: italic;
 }
 
+.section-block casegeneral {
+  font-style: italic;
+  color: #787a96;
+}
+
 .section-block u {
   text-decoration: underline;
   text-decoration-color: #2c3e50;

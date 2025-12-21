@@ -809,7 +809,7 @@ sections:
     <!-- Épingle 1 - AJUSTE left et top EN % -->
     <div class="map-pin" data-case="case1" style="left: 30%; top: 40%;"></div>
     <div class="pin-label" style="left: 25%; top: 40%; background-color: #ffcdcd;">
-      Study Case 1:<br><strong>subredditdrama</strong><br>(Cluster 0)
+      Study Case 1:<br><strong>bettersubredditdrama</strong><br>(Cluster 0)
     </div>
     
     <!-- Épingle 2 - AJUSTE left et top EN % -->
@@ -845,10 +845,10 @@ sections:
     <div class="case-common-section">
       <h3>Time Window Identification</h3>
     <p>
-      <em>An interesting time window is selected based on the trends of interactions over the whole available time period (global). 
+      <casegeneral>An interesting time window is selected based on the trends of interactions over the whole available time period (global). 
       We argue that the trend of total source and total target interactions adds useful information in addition to a simple 
       global toxic interaction trend. Indeed, this allows us to gather information about the dynamic of the focused group 
-      (mostly aggressor or victim interactions). They add key insights for time window selection, and will be verified later on.<em>
+      (mostly aggressor or victim interactions). They add key insights for time window selection, and will be verified later on.</casegeneral>
     </p>
 
     <div class="box-remark box-collapsible">
@@ -884,7 +884,6 @@ sections:
   </p>
   </div>
   </div>
-    
     <!-- Contenu spécifique : Time Window identification -->
     <div class="case-specific-content" data-case="case1">
       <iframe src="assets/interactives/studycases/CS1_1_daily_interactions_overall.html" width="100%" height = "440px" style="border: none;"></iframe>
@@ -924,8 +923,8 @@ sections:
     <div class="case-common-section">
       <h3>Toxic Event Assessment</h3>
       <p>
-        <em>Now that the time window of interest has been chosen, we can extract from the interaction dataframe the subreddits in the group 
-        (keyword-based <code>U</code> usual neighbors-based), and the interactions within this time window.</em>
+        <casegeneral>Now that the time window of interest has been chosen, we can extract from the interaction dataframe the subreddits in the group 
+        (keyword-based <code>U</code> usual neighbors-based), and the interactions within this time window.</casegeneral>
       </p>
     </div>
     
@@ -963,8 +962,8 @@ sections:
     <div class="case-common-section">
       <h4>Total Interactions Over Time</h4>
       <p>
-        <em>Based on the daily total interactions, we can assess if this event resembles the type previously assigned during clustering, 
-        namely either <strong>Victim</strong> or <strong>Aggressor</strong>.</em>
+        <casegeneral>Based on the daily total interactions, we can assess if this event resembles the type previously assigned during clustering, 
+        namely either <strong>Victim</strong> or <strong>Aggressor</strong>.</casegeneral>
       </p>
     
       <div class="box-remark box-collapsible">
@@ -1023,19 +1022,19 @@ sections:
     <div class="case-common-section">
       <h4>Top subreddit interactors</h4>
       <p>
-        <em>In addition to identifying the class of toxic event and the associated behavior cluster, we take a look at the most active 
-            subreddits in this context. This allows us to further classify the event from the number of relevant participants, and 
-            perform data reduction to pick the most active subreddits in this case. Typically, the source-to-target interaction ratio 
-            is highlighted for each of them, allowing us to identify principal participants. Note that their status as prosecutor, 
-            victim or catalyst cannot properly be defined as this is based on their interactions, rather than their toxic interactions 
-            (which will be studied in the next parts). Linear axes have been kept because of the stacked bar plots, as a y log-axis 
-            would have given more visual importance to very small target interactions compared to those on top of high source interactions. 
-            Moreover, the point here is to highlight the differences in activeness, which is easier to assess with a linear axis for 
-            dominant subreddits.</em>
+        <casegeneral>In addition to identifying the class of toxic event and the associated behavior cluster, we take a look at the most active 
+        subreddits in this context. This allows us to further classify the event from the number of relevant participants, and 
+        perform data reduction to pick the most active subreddits in this case. Typically, the source-to-target interaction ratio 
+        is highlighted for each of them, allowing us to identify principal participants. Note that their status as prosecutor, 
+        victim or catalyst cannot properly be defined as this is based on their interactions, rather than their toxic interactions 
+        (which will be studied in the next parts). Linear axes have been kept because of the stacked bar plots, as a y log-axis 
+        would have given more visual importance to very small target interactions compared to those on top of high source interactions. 
+        Moreover, the point here is to highlight the differences in activeness, which is easier to assess with a linear axis for 
+        dominant subreddits.</casegeneral>
       </p>
     </div>
     
-    <!-- Contenu spécifique : Discussion -->
+    <!-- Contenu spécifique : Top subreddit interactors -->
     <div class="case-specific-content" data-case="case1">
       <iframe src="assets/interactives/studycases/CS1_4_top_interactors_windowed.html" width="100%" height = "440px" style="border: none;"></iframe>
       <p>
@@ -1077,10 +1076,10 @@ sections:
     <div class="case-common-section">
       
       
-    <div class="box-remark box-collapsible">
+    <div class="box-error box-collapsible">
     <div class="box-header">
     <div>
-      <strong>Remark - </strong>What about retained false positives?
+      What about <strong>retained false positives</strong>?
     </div>
     <button class="box-toggle" aria-label="Toggle details"></button>
     </div>
@@ -1096,10 +1095,10 @@ sections:
       
       <h4>Toxic Interactions Over Time</h4>
       <p>
-        <em>Further analysis of toxic interactions is performed in this subsection. The evolution of the total toxic 
-            interactions is key in indicating if the interaction outbreak is indeed toxic. Additionally, a moving average 
-            is shown to confirm a change in trend. The toxicity nature of an interaction is decided based on their categorical 
-            feature presented earlier: <code>TOXICITY_CAT == 1</code></em>.
+        <casegeneral>Further analysis of toxic interactions is performed in this subsection. The evolution of the total toxic 
+        interactions is key in indicating if the interaction outbreak is indeed toxic. Additionally, a moving average 
+        is shown to confirm a change in trend. The toxicity nature of an interaction is decided based on their categorical 
+        feature presented earlier: <code>TOXICITY_CAT == 1</code>.</casegeneral>
       </p>
     </div>
 
@@ -1151,17 +1150,15 @@ sections:
       </p>
     </div>
 
-
-
     <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
     <!-- Sous-section commune: Top Toxic Subreddit Interactors -->
     <div class="case-common-section">
       
     <h4>Top Toxic Subreddit Interactors</h4>
       <p>
-        <em>Finally, we add a plot showing the number of toxic interactions for each subreddit. This allow us to identify 
-            the most toxic subreddits, and therefore more precisely select the most active participants in terms of toxicity 
-            later on. We use here a log scale for the y-axis as we don't have stacked plots, and to improve readability.</em>.
+        <casegeneral>Finally, we add a plot showing the number of toxic interactions for each subreddit. This allow us to identify 
+        the most toxic subreddits, and therefore more precisely select the most active participants in terms of toxicity 
+        later on. We use here a log scale for the y-axis as we don't have stacked plots, and to improve readability.</casegeneral>
       </p>
     
     <!-- Contenu spécifique : Top Toxic Subreddit Interactors -->
@@ -1194,7 +1191,230 @@ sections:
         alliance as prosecutors, propagating toxicity to numerous victims without interacting with one another.
       </p>
     </div>
-    
+
+
+
+    <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- Section commune: Life Cycle analysis -->
+    <div class="case-common-section">
+      
+    <h3>Top Toxic Subreddit Interactors</h3>
+      <p>
+        <casegeneral>From the previously gathered information, we are now able to select the most active participants, in terms of 
+            interactions and toxic interactions. We aim to confirm our beliefs on prosecutors and catalysts, and identify potential 
+            attenuators based on the causal inferences on the protagonist subreddit. Using a state-of-the-art algorithm for causal 
+            inference on time series, namely PCMCI (Peter and Clark Momentary Conditional Independence) algorithm [3], we can assess 
+            the effect of the most active subreddits on the protagonist.</casegeneral>
+      </p>
+
+
+    <div class="box-remark box-collapsible">
+    <div class="box-header">
+    <div>
+      SOMETHING HERE
+    </div>
+    <button class="box-toggle" aria-label="Toggle details"></button>
+    </div>
+  
+    <div class="box-content">
+    <p> SHIT SHIT SHIT.
+    </p>
+    </div>
+    </div>
+
+    <div class="box-error box-collapsible">
+    <div class="box-header">
+    <div>
+      ANOTHER ONE HERE
+    </div>
+    <button class="box-toggle" aria-label="Toggle details"></button>
+    </div>
+  
+    <div class="box-content">
+    <p> Red links are positively correlated and green links are negatively correlated. Colored links are only drawn towards or from 
+        the protagonist. Lag is also shown, and indicates the time taken from one time series to affect the pointed node. As mentioned 
+        in the early phase of this section, such social links form a complex web of interlinked connections. PCMCI allows us to 
+        determine statistical dependence and correlation between time series, but is not a magical tool. The obtained causal graph 
+        is a representation of the causal interactions through statistical relevance, based on our assumptions. For example, we only 
+        analyze the most active subreddits, while the real connections are most likely the result of hundreds of low interacting 
+        subreddits. Unmodelled confounders indeed have an effect that cannot be seen in this graph, giving a simplified final analysis. 
+        This is also why only the protagonist is analyzed, since it reduces the number of links to take into account. We highlight that 
+        the graphs we obtain make sense as the effect on one subreddit is never considered from a single source.
+    </p>
+    </div>
+    </div>
+
+    <div class="box-note box-collapsible">
+    <div class="box-header">
+    <div>
+      <strong>Note - </strong>Litterature referenced:
+    </div>
+    <button class="box-toggle" aria-label="Toggle details"></button>
+    </div>
+  
+    <div class="box-content">
+    <ul>
+        <li>[1]: Causal Discovery with Multivariate Time Series Data (
+        <a href="https://medium.com/causality-in-data-science/causal-discovery-with-multivariate-time-series-data-a3f7ffc16747"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="color: #003366; font-weight: 500; text-decoration: underline;">
+          link
+        </a>)
+        </li>
+        <li>[1]: Tigramite Documentation (
+        <a href="https://jakobrunge.github.io/tigramite/index.html#"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="color: #003366; font-weight: 500; text-decoration: underline;">
+          link
+        </a>)
+        </li>
+        <li>[3]: Krich, C., Runge, J., Miralles, D. G., Migliavacca, M., Perez-Priego, O., El-Madany, T., ... & Mahecha, M. D. (2020). 
+            Estimating causal networks in biosphere–atmosphere interaction with the PCMCI approach. Biogeosciences, 17(4), 1033-1061.
+        </li>
+    </ul>
+    </div>
+    </div>
+
+    <!-- Contenu spécifique : Life Cycle analysis -->
+    <div class="case-specific-content" data-case="case1">
+      <iframe src="assets/interactives/studycases/CS1_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <iframe src="assets/interactives/studycases/CS1_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <p>
+        MISSING TEXT
+      </p>
+    </div>
+    <div class="case-specific-content" data-case="case2">
+      <iframe src="assets/interactives/studycases/CS1_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <iframe src="assets/interactives/studycases/CS1_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <p>
+        MISSING TEXT
+      </p>
+    </div>
+    <div class="case-specific-content" data-case="case3">
+      <iframe src="assets/interactives/studycases/CS1_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <iframe src="assets/interactives/studycases/CS1_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <p>
+        MISSING TEXT
+      </p>
+    </div>
+
+    <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- Section commune: Conclusion -->
+    <div class="case-common-section">
+      
+    <h3>Conclusion</h3>
+      <p>
+        <casegeneral>From the previously gathered information, we are now able to select the most active participants, in terms of 
+            interactions and toxic interactions. We aim to confirm our beliefs on prosecutors and catalysts, and identify potential 
+            attenuators based on the causal inferences on the protagonist subreddit. Using a state-of-the-art algorithm for causal 
+            inference on time series, namely PCMCI (Peter and Clark Momentary Conditional Independence) algorithm [3], we can assess 
+            the effect of the most active subreddits on the protagonist.</casegeneral>
+      </p>
+
+
+    <div class="box-remark box-collapsible">
+    <div class="box-header">
+    <div>
+      SOMETHING HERE
+    </div>
+    <button class="box-toggle" aria-label="Toggle details"></button>
+    </div>
+  
+    <div class="box-content">
+    <p> SHIT SHIT SHIT.
+    </p>
+    </div>
+    </div>
+
+    <div class="box-error box-collapsible">
+    <div class="box-header">
+    <div>
+      ANOTHER ONE HERE
+    </div>
+    <button class="box-toggle" aria-label="Toggle details"></button>
+    </div>
+  
+    <div class="box-content">
+    <p> Red links are positively correlated and green links are negatively correlated. Colored links are only drawn towards or from 
+        the protagonist. Lag is also shown, and indicates the time taken from one time series to affect the pointed node. As mentioned 
+        in the early phase of this section, such social links form a complex web of interlinked connections. PCMCI allows us to 
+        determine statistical dependence and correlation between time series, but is not a magical tool. The obtained causal graph 
+        is a representation of the causal interactions through statistical relevance, based on our assumptions. For example, we only 
+        analyze the most active subreddits, while the real connections are most likely the result of hundreds of low interacting 
+        subreddits. Unmodelled confounders indeed have an effect that cannot be seen in this graph, giving a simplified final analysis. 
+        This is also why only the protagonist is analyzed, since it reduces the number of links to take into account. We highlight that 
+        the graphs we obtain make sense as the effect on one subreddit is never considered from a single source.
+    </p>
+    </div>
+    </div>
+
+    <div class="box-note box-collapsible">
+    <div class="box-header">
+    <div>
+      <strong>Note - </strong>Litterature referenced:
+    </div>
+    <button class="box-toggle" aria-label="Toggle details"></button>
+    </div>
+  
+    <div class="box-content">
+    <ul>
+        <li>[1]: Causal Discovery with Multivariate Time Series Data (
+        <a href="https://medium.com/causality-in-data-science/causal-discovery-with-multivariate-time-series-data-a3f7ffc16747"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="color: #003366; font-weight: 500; text-decoration: underline;">
+          link
+        </a>)
+        </li>
+        <li>[1]: Tigramite Documentation (
+        <a href="https://jakobrunge.github.io/tigramite/index.html#"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="color: #003366; font-weight: 500; text-decoration: underline;">
+          link
+        </a>)
+        </li>
+        <li>[3]: Krich, C., Runge, J., Miralles, D. G., Migliavacca, M., Perez-Priego, O., El-Madany, T., ... & Mahecha, M. D. (2020). 
+            Estimating causal networks in biosphere–atmosphere interaction with the PCMCI approach. Biogeosciences, 17(4), 1033-1061.
+        </li>
+    </ul>
+    </div>
+    </div>
+
+    <!-- Contenu spécifique : Life Cycle analysis -->
+    <div class="case-specific-content" data-case="case1">
+      <iframe src="assets/interactives/studycases/CS1_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <iframe src="assets/interactives/studycases/CS1_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <p>
+        MISSING TEXT
+      </p>
+    </div>
+    <div class="case-specific-content" data-case="case2">
+      <iframe src="assets/interactives/studycases/CS1_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <iframe src="assets/interactives/studycases/CS1_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <p>
+        MISSING TEXT
+      </p>
+    </div>
+    <div class="case-specific-content" data-case="case3">
+      <iframe src="assets/interactives/studycases/CS1_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <iframe src="assets/interactives/studycases/CS1_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <p>
+        MISSING TEXT
+      </p>
+    </div>
+
+
+
+
+
+
+
+
+
+
   </div>
 </section>
 
