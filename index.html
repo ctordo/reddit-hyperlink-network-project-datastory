@@ -804,7 +804,7 @@ sections:
   <!-- #################################################################################################################################### -->  
   <!-- Carte interactive avec épingles -->
   <div class="case-map-container">
-    <img src="{{ '/assets/img/redditdraw.png' | relative_url }}" alt="Reddit Network Map">
+    <img src="{{ '/assets/img/redditdraw2.png' | relative_url }}" alt="Reddit Network Map">
     
     <!-- Épingle 1 - AJUSTE left et top EN % -->
     <div class="map-pin" data-case="case1" style="left: 30%; top: 40%;"></div>
@@ -849,7 +849,7 @@ sections:
     </div>
 
     <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
-    <!-- Section commune: Time Window identification -->
+    <!-- Section commune : Time Window identification -->
     <div class="case-common-section">
       <h3>Time Window Identification</h3>
     <p>
@@ -868,7 +868,7 @@ sections:
     </div>
   
   <div class="box-content">
-  <img src="{{ '/assets/img/toxic_event_classes.png' | relative_url }}" alt="classes" class="center medium">
+  <img src="{{ '/assets/img/toxic_event_classes.png' | relative_url }}" alt="classes" class="center small">
   <ul>
       <li>a) Single Victim, Multiple Prosecutors</li>
       <li>b) Multiple Victims, Single Prosecutors </li>
@@ -895,96 +895,134 @@ sections:
     
     <!-- Contenu spécifique : Time Window identification -->
     <div class="case-specific-content" data-case="case1">
-      <p>
-        Political subreddits represent some of the most polarized communities on Reddit, with distinct ideological 
-        boundaries and high levels of inter-group conflict. We selected <strong>r/politics</strong>, 
-        <strong>r/conservative</strong>, and <strong>r/liberal</strong> as representative samples spanning the 
-        political spectrum.
-      </p>
       <iframe src="assets/interactives/studycases/CS1_1_daily_interactions_overall.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <iframe src="assets/interactives/studycases/CS1_2_daily_interactions_negative.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <p>
+        The <em>'bettersubredditdrama'</em> is particular as it was active only for a short period. However, we can see that the toxic-to-nontoxic 
+        ratio of interactions in this period is moderately high, and constant. This makes it a potential chronic toxic subreddit in 
+        its lifespan. Furthermore, it almost only interacts as a source, validating its 'aggressor' nature found by clustering.
+      </p>
     </div>
     <div class="case-specific-content" data-case="case2">
+      <iframe src="assets/interactives/studycases/CS1_1_daily_interactions_overall.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <iframe src="assets/interactives/studycases/CS1_2_daily_interactions_negative.html" width="100%" height = "440px" style="border: none;"></iframe>
       <p>
-        Gaming communities exhibit unique toxicity patterns, often centered around competitive gameplay, developer 
-        criticism, and platform wars. We focused on <strong>r/gaming</strong>, <strong>r/pcmasterrace</strong>, 
-        and <strong>r/leagueoflegends</strong>, representing general gaming culture, PC gaming advocacy, and 
-        competitive esports respectively.
+        The <em>'science'</em> subreddit was subject to numerous bursty events. One of them appears as a dominant toxic event over 
+        the whole period and could be interesting to investigate for its rapidly changing behavior. Moreover, most of its interactions 
+        over the whole time period are as target, indicating a victim nature (same as clustering prediction). We highlight that 
+        the nature of the selected peak between April 15th and May 5th is consistent with this observation, meaning it can also 
+        be classified as a victim event.
       </p>
     </div>
     <div class="case-specific-content" data-case="case3">
+      <iframe src="assets/interactives/studycases/CS1_1_daily_interactions_overall.html" width="100%" height = "440px" style="border: none;"></iframe>
+      <iframe src="assets/interactives/studycases/CS1_2_daily_interactions_negative.html" width="100%" height = "440px" style="border: none;"></iframe>
       <p>
-        News aggregation subreddits serve as crucial information hubs but face challenges with misinformation 
-        and coordinated manipulation. We examined <strong>r/news</strong>, <strong>r/worldnews</strong>, and 
-        <strong>r/neutralnews</strong>, representing mainstream news, international coverage, and moderated 
-        fact-based discussion.
+        The <em>'drama'</em> subreddit is one of the most active on reddit. It has a toxic peak resembling the one of 
+        <em>'bettersubredditdrama'</em>, which makes sense from their thematic closeness. However, its number of interactions is 
+        way higher and possesses context before and after, making it non only interesting in itself, but also interesting to compare 
+        with the first case study. We can see that the number of source interactions is dominant, indicating an aggressor behavior 
+        (consistent with clustering). We therefore select a time window slightly larger than the first case study (i.e. from November 
+        1st 2015 to January 1st 2016) in order to take into account bigger time series data.
       </p>
     </div>
 
     <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
-    <!-- Section commune: XXX -->
+    <!-- Section commune : Toxic Event Assessment -->
     <div class="case-common-section">
-      <h4>Methodology</h4>
+      <h3>Methodology</h3>
       <p>
-        Our analysis pipeline consists of four stages: data collection, preprocessing, feature extraction, 
-        and statistical modeling. We collected hyperlinks and associated comments over a 6-month observation period, 
-        applying our toxicity scoring algorithm to each comment thread.
+        Now that the time window of interest has been chosen, we can extract from the interaction dataframe the subreddits in the group 
+        (keyword-based <code>U</code> usual neighbors-based), and the interactions within this time window.
       </p>
     </div>
     
-    <!-- Contenu spécifique : Détails méthodologiques -->
+    <!-- Contenu spécifique : Toxic Event Assessment -->
     <div class="case-specific-content" data-case="case1">
       <p>
-        We analyzed <strong>50,000 hyperlinks</strong> shared across these communities, with particular attention 
-        to election-related content and cross-community link sharing patterns. The observation period (January-June 2024) 
-        captured a politically active timeframe including primary elections.
+        451 subreddits were found to be interacting with 'drama' over the focused time window. This suggests a toxic event with 
+        multi victims (class b or class c based on the toxic event classes). Some of its typical interacting network (habitual neighbors) 
+        were indeed interacting with it in this period. Most of them (95%) were not interacting directly, but may be catalysts. 
+        That is, they may have effects on its interacting subreddits (analogue to a confounder variable) without having direct 
+        connection with it.
       </p>
     </div>
     <div class="case-specific-content" data-case="case2">
       <p>
-        Our analysis covered <strong>75,000 links</strong> shared during major game releases and esports tournaments, 
-        periods known for heightened community engagement and conflict. We specifically tracked sentiment around 
-        three major game launches and two international esports championships.
+        For the 'science' subreddit, 158 other subreddits were found to be interacting with it over the chosen time window. 
+        From its victim nature, this suggests a multi-aggressor scenario (class a or c based on the toxic event classes). 
+        None of its habitual neighbors are part of these interacting subreddits, but may still be catalysts. That is, they may 
+        have effects on its interacting subreddits (analogue to a confounder variable) without having direct connection with it.
       </p>
     </div>
     <div class="case-specific-content" data-case="case3">
       <p>
-        We tracked <strong>100,000 news links</strong> over one year, cross-referencing with fact-checking databases 
-        (Snopes, FactCheck.org, PolitiFact) and analyzing the correlation between source reliability and toxicity 
-        in discussions. Links were classified by source credibility score.
+        Numerous subreddits (815) are interacting with the 'drama' subreddit. This makes sense as it is a very active subreddit 
+        overall. We also note that some habitual neighbors (8%) are part of the interacting subreddits. Because of its high number 
+        of source interactions and the high number of interacting subreddits, we assess that this outbreak is linked to a multi-victim 
+        scenario (class b or class c based on the toxic event classes). While 92% of its typical interacting network is not directly 
+        interacting in this period of time, they may have effects on its interacting subreddits (analogue to a confounder variable) 
+        without having direct connection with it.
       </p>
     </div>
     
-    <!-- Section commune 4 -->
+    <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- Sous-section commune : Total Interactions over time -->
     <div class="case-common-section">
-      <h4>Key Findings</h4>
+      <h4>Total Interactions Over Time</h4>
       <p>
-        Our analysis revealed significant variations in toxicity patterns across the selected communities. 
-        Below we present the most salient findings specific to this case study.
+        Based on the daily total interactions, we can assess if this event resembles the type previously assigned during clustering, 
+        namely either <strong>Victim</strong> or <strong>Aggressor</strong>.
       </p>
+    
+      <div class="box-remark box-collapsible">
+        <div class="box-header">
+          <div>
+            <strong>Remark - </strong>SOME SHIT HERE
+          </div>
+          <button class="box-toggle" aria-label="Toggle details"></button>
+        </div>
+  
+        <div class="box-content">
+        <p>
+          As mentioned previously, this part allows us to discuss if an interaction outbreak indeed appears in the chosen time window. 
+          Moreover, the dominance of one type of interaction (source or target) gives information about the class of toxic event it is. 
+          In instance, a high source-to-target ratio indicates that most of the focused subreddits interact towards external subreddits, 
+          meaning a typical aggressor behavior.
+        </p>
+        </div>
+      </div>
+
     </div>
     
-    <!-- Contenu spécifique : Résultats -->
+    <!-- Contenu spécifique : Total Interactions over time -->
     <div class="case-specific-content" data-case="case1">
-      <p>
-        Toxicity scores were significantly elevated (<em>μ = 0.68</em>) compared to Reddit baseline (<em>μ = 0.42</em>), 
-        with particular concentration around election-related content. Cross-community link sharing almost exclusively 
-        occurred in the context of criticism, with <strong>87% of cross-posted links</strong> accompanied by 
-        negative sentiment.
+      <iframe src="assets/interactives/studycases/CS1_3_daily_interactions_windowed.html" width="100%" height = "440px" style="border: none;"></iframe>
+        <p>
+        As seen in the global interaction plot, the interactions of 'bettersubredditdrama' are condensed in a short period. We can see 
+        more clearly that the total interaction curve overlaps the total source interaction curve, indicating as stated earlier an 
+        aggressor behavior. This confirms the clustering belief. Note that a time step of 12h has been set to distinguish more clearly 
+        the trends, and to reduce aggregation of data.
       </p>
     </div>
     <div class="case-specific-content" data-case="case2">
+      <iframe src="assets/interactives/studycases/CS1_3_daily_interactions_windowed.html" width="100%" height = "440px" style="border: none;"></iframe>
       <p>
-        Toxicity exhibited strong temporal patterns, with spikes corresponding to controversial updates or 
-        competitive losses (peak <em>μ = 0.72</em> during tournament finals). Interestingly, developer-directed 
-        toxicity showed <strong>different linguistic patterns</strong> than player-directed toxicity, with the 
-        former more focused on betrayal narratives.
+        In order to identify more precisely the trends and source-to-target interaction ratios, we use a finer time step of 6h in this 
+        plot. Data is therefore less aggregated and in addition to the focus on the selected time window, we can assess that the date 
+        of concern is around 18:00 on April 23rd 2015. A majority of target interactions shows a victim-type event for the 'science' 
+        subreddit, confirming our prior clustering belief. We can also see another interaction outbreak on April 15th 2015, but we need 
+        to see the amount of toxic interaction to assess if it is relevant to our study.
       </p>
     </div>
     <div class="case-specific-content" data-case="case3">
+      <iframe src="assets/interactives/studycases/CS1_3_daily_interactions_windowed.html" width="100%" height = "440px" style="border: none;"></iframe>
       <p>
-        Links to low-credibility sources correlated strongly with elevated toxicity (<em>r = 0.61, p < 0.001</em>), 
-        while fact-checked sources showed <strong>40% lower toxicity</strong> in associated comments. Notably, 
-        r/neutralnews maintained consistently lower toxicity (<em>μ = 0.31</em>) through aggressive moderation.
+        From this plot, we can say that the prior belief obtained with clustering is true. A significant amount of source interactions 
+        compared to the target ones indeed indicates an aggressor behaviour. Within this focused time window, it is easier to assess 
+        that the total number of interactions indeed went up for an extended period (roughly a month). Compared to the first study 
+        case, we have a clearer context to compare this outbreak to. Further analysis with the plot of toxic interactions will provide 
+        useful information to establish if an extended toxic event indeed took place.
       </p>
     </div>
     
