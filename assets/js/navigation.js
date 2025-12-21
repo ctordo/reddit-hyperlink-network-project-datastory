@@ -64,34 +64,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Study cases – carte interactive
 
-document.addEventListener('DOMContentLoaded', function () {
-  const pins = document.querySelectorAll('.map-pin');
-  const cases = document.querySelectorAll('.case-content');
-
-  function hideAllCases() {
-    cases.forEach(c => c.classList.remove('active'));
-    pins.forEach(p => p.classList.remove('active'));
-  }
-
-  pins.forEach(pin => {
-    pin.addEventListener('click', function () {
-      const caseId = this.getAttribute('data-case');
-      const targetCase = document.getElementById(caseId);
-
-      if (!targetCase) return;
-
-      // Reset
-      hideAllCases();
-
-      // Activate selected
-      this.classList.add('active');
-      targetCase.classList.add('active');
-
+// Gestion des épingles sur la carte pour study cases
+document.addEventListener('DOMContentLoaded', function() {
+  const mapPins = document.querySelectorAll('.map-pin');
+  
+  if (mapPins.length > 0) {
+    mapPins.forEach(pin => {
+      pin.addEventListener('click', function() {
+        const caseId = this.getAttribute('data-case');
+        
+        // Retirer la classe active de toutes les épingles
+        mapPins.forEach(p => p.classList.remove('active'));
+        
+        // Ajouter la classe active à l'épingle cliquée
+        this.classList.add('active');
+        
+        // Cacher tous les contenus spécifiques
+        const allSpecificContents = document.querySelectorAll('.case-specific-content');
+        allSpecificContents.forEach(c => c.classList.remove('active'));
+        
+        // Afficher le contenu spécifique correspondant
+        const specificContents = document.querySelectorAll(`.case-specific-content[data-case="${caseId}"]`);
+        specificContents.forEach(content => {
+          content.classList.add('active');
+        });
+        
+        // Scroll smooth vers le contenu
+        const caseContainer = document.getElementById('case-container');
+        if (caseContainer) {
+          setTimeout(() => {
+            caseContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 100);
+        }
+      });
     });
-  });
-
-  // OPTIONNEL : afficher le premier study case par défaut
-  if (pins.length > 0) {
-    pins[0].click();
+    
+    // Activer la première épingle par défaut
+    mapPins[0].click();
   }
 });

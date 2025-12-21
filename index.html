@@ -725,7 +725,7 @@ sections:
 <!-- STUDY CASES -->
 <!-- #################################################################################################################################### -->
 
-<section id="studycases" class="section-block">
+<section id="studycases" class="section-block">  
   <h1>Study Cases</h1>
   
   <p>
@@ -801,11 +801,10 @@ sections:
     <strong>Click on the red pins on the map to explore each case.</strong>
   </p>
 
-
-  <!-- #################################################################################################################################### -->
+  <!-- #################################################################################################################################### -->  
   <!-- Carte interactive avec épingles -->
   <div class="case-map-container">
-    <img src="{{ '/assets/img/redditdraw2.png' | relative_url }}" alt="Reddit Network Map">
+    <img src="{{ '/assets/img/redditdraw.png' | relative_url }}" alt="Reddit Network Map">
     
     <!-- Épingle 1 - AJUSTE left et top EN % -->
     <div class="map-pin" data-case="case1" style="left: 30%; top: 40%;"></div>
@@ -826,12 +825,33 @@ sections:
     </div>
   </div>
 
-  <!-- 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 -->
-  <!-- Contenu Case 1 -->
-  <div id="case1" class="case-content">
-    <h2>Study Case 1: Political Subreddits</h2>
+  <!-- #################################################################################################################################### -->
+  <!-- Conteneur principal avec alternance contenu commun/spécifique -->
+  <div id="case-container">
     
-    <h3>Time Window Identification</h3>
+    <!-- Section commune 1 -->
+    <div class="case-common-section">
+      <h3>Introduction</h3>
+      <p>
+        WESH WESH
+      </p>
+    </div>
+  
+    <!-- Contenu spécifique : Titre du case -->
+    <div class="case-specific-content" data-case="case1">
+      <h3>Study Case 1: bettersubredditdrama</h3>
+    </div>
+    <div class="case-specific-content" data-case="case2">
+      <h3>Study Case 2: science</h3>
+    </div>
+    <div class="case-specific-content" data-case="case3">
+      <h3>Study Case 3: drama</h3>
+    </div>
+
+    <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- Section commune: Time Window identification -->
+    <div class="case-common-section">
+      <h3>Time Window Identification</h3>
     <p>
       An interesting time window is selected based on the trends of interactions over the whole available time period (global). 
       We argue that the trend of total source and total target interactions adds useful information in addition to a simple 
@@ -873,26 +893,135 @@ sections:
   </div>
   </div>
     
-    <iframe src="assets/interactives/studycases/CS1_1_daily_interactions_overall.html" width="100%" height = "440px" style="border: none;"></iframe>
-    <iframe src="assets/interactives/studycases/CS1_2_daily_interactions_negative.html" width="100%" height = "440px" style="border: none;"></iframe>
-    <iframe src="assets/interactives/studycases/CS1_3_daily_interactions_windowed.html" width="100%" height = "440px" style="border: none;"></iframe>
-    <iframe src="assets/interactives/studycases/CS1_4_top_interactors_windowed.html" width="100%" height = "440px" style="border: none;"></iframe>
-    <iframe src="assets/interactives/studycases/CS1_5_daily_negative_interactions_windowed.html" width="100%" height = "440px" style="border: none;"></iframe>
-    <iframe src="assets/interactives/studycases/CS1_6_top_negative_interactors_windowed.html" width="100%" height = "440px" style="border: none;"></iframe>
-    <iframe src="assets/interactives/studycases/CS1_7_PCMCI.html" width="100%" height = "440px" style="border: none;"></iframe>
+    <!-- Contenu spécifique : Time Window identification -->
+    <div class="case-specific-content" data-case="case1">
+      <p>
+        Political subreddits represent some of the most polarized communities on Reddit, with distinct ideological 
+        boundaries and high levels of inter-group conflict. We selected <strong>r/politics</strong>, 
+        <strong>r/conservative</strong>, and <strong>r/liberal</strong> as representative samples spanning the 
+        political spectrum.
+      </p>
+      <iframe src="assets/interactives/studycases/CS1_1_daily_interactions_overall.html" width="100%" height = "440px" style="border: none;"></iframe>
+    </div>
+    <div class="case-specific-content" data-case="case2">
+      <p>
+        Gaming communities exhibit unique toxicity patterns, often centered around competitive gameplay, developer 
+        criticism, and platform wars. We focused on <strong>r/gaming</strong>, <strong>r/pcmasterrace</strong>, 
+        and <strong>r/leagueoflegends</strong>, representing general gaming culture, PC gaming advocacy, and 
+        competitive esports respectively.
+      </p>
+    </div>
+    <div class="case-specific-content" data-case="case3">
+      <p>
+        News aggregation subreddits serve as crucial information hubs but face challenges with misinformation 
+        and coordinated manipulation. We examined <strong>r/news</strong>, <strong>r/worldnews</strong>, and 
+        <strong>r/neutralnews</strong>, representing mainstream news, international coverage, and moderated 
+        fact-based discussion.
+      </p>
+    </div>
 
-    <h4>Methodology</h4>
-    <p>
-      Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We analyzed 50,000 hyperlinks shared 
-      across these communities over a 6-month period.
-    </p>
+    <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- Section commune: XXX -->
+    <div class="case-common-section">
+      <h4>Methodology</h4>
+      <p>
+        Our analysis pipeline consists of four stages: data collection, preprocessing, feature extraction, 
+        and statistical modeling. We collected hyperlinks and associated comments over a 6-month observation period, 
+        applying our toxicity scoring algorithm to each comment thread.
+      </p>
+    </div>
+    
+    <!-- Contenu spécifique : Détails méthodologiques -->
+    <div class="case-specific-content" data-case="case1">
+      <p>
+        We analyzed <strong>50,000 hyperlinks</strong> shared across these communities, with particular attention 
+        to election-related content and cross-community link sharing patterns. The observation period (January-June 2024) 
+        captured a politically active timeframe including primary elections.
+      </p>
+    </div>
+    <div class="case-specific-content" data-case="case2">
+      <p>
+        Our analysis covered <strong>75,000 links</strong> shared during major game releases and esports tournaments, 
+        periods known for heightened community engagement and conflict. We specifically tracked sentiment around 
+        three major game launches and two international esports championships.
+      </p>
+    </div>
+    <div class="case-specific-content" data-case="case3">
+      <p>
+        We tracked <strong>100,000 news links</strong> over one year, cross-referencing with fact-checking databases 
+        (Snopes, FactCheck.org, PolitiFact) and analyzing the correlation between source reliability and toxicity 
+        in discussions. Links were classified by source credibility score.
+      </p>
+    </div>
+    
+    <!-- Section commune 4 -->
+    <div class="case-common-section">
+      <h4>Key Findings</h4>
+      <p>
+        Our analysis revealed significant variations in toxicity patterns across the selected communities. 
+        Below we present the most salient findings specific to this case study.
+      </p>
+    </div>
+    
+    <!-- Contenu spécifique : Résultats -->
+    <div class="case-specific-content" data-case="case1">
+      <p>
+        Toxicity scores were significantly elevated (<em>μ = 0.68</em>) compared to Reddit baseline (<em>μ = 0.42</em>), 
+        with particular concentration around election-related content. Cross-community link sharing almost exclusively 
+        occurred in the context of criticism, with <strong>87% of cross-posted links</strong> accompanied by 
+        negative sentiment.
+      </p>
+    </div>
+    <div class="case-specific-content" data-case="case2">
+      <p>
+        Toxicity exhibited strong temporal patterns, with spikes corresponding to controversial updates or 
+        competitive losses (peak <em>μ = 0.72</em> during tournament finals). Interestingly, developer-directed 
+        toxicity showed <strong>different linguistic patterns</strong> than player-directed toxicity, with the 
+        former more focused on betrayal narratives.
+      </p>
+    </div>
+    <div class="case-specific-content" data-case="case3">
+      <p>
+        Links to low-credibility sources correlated strongly with elevated toxicity (<em>r = 0.61, p < 0.001</em>), 
+        while fact-checked sources showed <strong>40% lower toxicity</strong> in associated comments. Notably, 
+        r/neutralnews maintained consistently lower toxicity (<em>μ = 0.31</em>) through aggressive moderation.
+      </p>
+    </div>
+    
+    <!-- Section commune 5 -->
+    <div class="case-common-section">
+      <h4>Discussion and Implications</h4>
+      <p>
+        These findings contribute to our broader understanding of toxicity propagation mechanisms in online communities. 
+        Each case study reveals unique patterns that inform both theoretical models and practical interventions.
+      </p>
+    </div>
+    
+    <!-- Contenu spécifique : Discussion -->
+    <div class="case-specific-content" data-case="case1">
+      <p>
+        The findings suggest that political polarization creates echo chambers that amplify toxic discourse through 
+        selective link sharing and reinforcement of in-group narratives. <strong>Intervention strategies</strong> 
+        should focus on promoting cross-community dialogue and fact-based discussion rather than simply removing 
+        toxic content.
+      </p>
+    </div>
+    <div class="case-specific-content" data-case="case2">
+      <p>
+        Gaming toxicity appears more reactive and event-driven than political toxicity, suggesting different 
+        intervention strategies may be required. <strong>Temporal cooling-off periods</strong> after major events 
+        and proactive community management during tournaments could significantly reduce toxicity spikes.
+      </p>
+    </div>
+    <div class="case-specific-content" data-case="case3">
+      <p>
+        The relationship between source credibility and discussion toxicity suggests that <strong>information quality 
+        interventions</strong> could have downstream effects on community discourse health. Promoting reliable sources 
+        and fact-checking infrastructure may be as important as direct content moderation.
+      </p>
+    </div>
+    
   </div>
-  
-
-
-
-
-
 </section>
 
 

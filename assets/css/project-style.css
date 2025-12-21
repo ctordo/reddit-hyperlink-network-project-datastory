@@ -778,6 +778,21 @@ body {
   display: block;
 }
 
+/* Sections communes (toujours visibles) */
+.case-common-section {
+  margin: 25px 0;
+}
+
+/* Sections spécifiques (changent selon sélection) */
+.case-specific-content {
+  display: none;
+}
+
+.case-specific-content.active {
+  display: block;
+  animation: fadeIn 0.5s ease-in;
+}
+
 
 @keyframes fadeIn {
   from {
