@@ -671,12 +671,11 @@ sections:
   </div>
   </div>
 
+  <h4>TRUC DE CEDRIC</h4>
+  <p>
+    truc de cedric
+  </p>
 
-  <!-- PART OF CEDRIC -->  
-  
-  
-  
-  
   <h4>Reduction through PCA</h4>
 
   <p>
@@ -736,18 +735,28 @@ sections:
         </li>
         <li><strong>Balance: </strong>  Measures how evenly communities are distributed across variants, calculated as the ratio of 
             smallest to largest variant size. A balance near 1 means roughly equal variant populations; near 0  
-            means one dominant "catch-all" group—likely not a real distinction.
+            means one dominant "catch-all" group.
         </li>
     </ul>
 
     <p>
         We also run <strong>100 stability tests</strong> for each K value using the Adjusted Rand Index (ARI) to ensure variant classifications are consistent 
-        and reproducible—not just random artifacts.
+        and reproducible.
     </p>
     <p>
         After systematic evaluation, </strong>K = 4</strong> emerges as optimal: high clustering 
         quality (silhouette ≈ 0.4), reasonable balance, and excellent stability (94% consistency across runs). Four distinct toxicity 
         variants, each representing a genuine behavioral archetype.
+    </p>
+
+  <h4>Results and Interpretation</h4>
+
+    <p>
+        It is now clear that the virus doesn't spread uniformly across the Reddit archipelago. 
+        Instead, it manifests through a limited number of recurring patterns which are distinct variants defined by how 
+        communities interact, over what time scales, and in which roles. This analysis revealed four distinct behavioral 
+        archetypes of toxic behavior, each characterized by its <strong>activity level</strong>, <strong>dominant role</strong> 
+        (aggressor or victim), and <strong>temporal dynamics</strong>.
     </p>
 
   </div>
@@ -788,11 +797,37 @@ sections:
   <p>
 
   </p>
-  <p>
-  The result of this clustering can be visualized in the following map. This map <strong>is not the geographic representation of Reddit 
+  
+    <ul>
+        <li>
+            <strong><span style="color: #d62728;">Cluster 0</span>: Moderate-volume Aggressor – Mixed</strong> (228 subreddits) <br>
+            These subreddits primarily send toxic messages but do so irregularly. They target multiple communities while rarely 
+            being targeted themselves. <br>
+            <u>Interpretation:</u> periodic aggressors, often reacting to specific events rather than sustaining 
+            long-term campaigns.
+        </li>
+        <li>
+            <strong><span style="color: #579cf7;">Cluster 1</span>: Moderate-volume Victim-leaning – Mixed</strong> (636 subreddits) <br>
+            These communities receive more toxicity than they send, but still engage in retaliatory behavior. <br>
+            <u>Interpretation:</u> controversial communities involved in ongoing conflicts, more often attacked than attacking, but not 
+            passive.
+        </li>
+        <li>
+            <strong><span style="color: #2ca02c;">Cluster 2</span>: High-volume Balanced (Hub) – Bursty</strong> (302 subreddits) <br>
+            Highly active communities with intense, reciprocal toxic exchanges occurring in short bursts. <br>
+            <u>Interpretation:</u> central hubs where major conflicts erupt, often triggered by external events.
+        </li>
+        <li>
+            <strong><span style="color: #ff7f0e;">Cluster 3</span>: Low-volume Victim – Mixed</strong> (198 subreddits) <br>
+            Subreddits that almost exclusively receive toxicity without responding. <br>
+            <u>Interpretation:</u> vulnerable communities subject to one-sided harassment, with little or no toxic output.
+        </li>
+    </ul>
+
+    <p>
+    The result of this clustering can be visualized in the following map. This map <strong>is not the geographic representation of Reddit 
     from the 300-dimensional embeddings</strong>. Instead, it is a virtual, statistical map in which each point represents a subreddit 
-    positioned according to the similarities in its toxic behavior. In this abstract representation, the five clusters form clearly distinct 
-    regions, making it immediately obvious that <strong>different types of toxicity propagation are at play</strong>. Hover on the map to explore how islands reorganized!
+    positioned according to the similarities in its toxic behavior. Hover on the map to explore how islands reorganized!
   </p>
 
   <iframe src="assets/interactives/reddit_maps/subreddit_clustering_interactive.html" width="100%" height=720px style="border: none;"></iframe>
@@ -801,7 +836,8 @@ sections:
   <h3>Marking variants on the Reddit map</h3>
   <p> 
     We now want to see how well the identified variants align with the geographic structure of the Reddit archipelago: we color the islands 
-    in our original embeddings-derived map according to their toxicity propagation style. 
+    in our original embeddings-derived map according to their toxicity propagation style. Subreddits that are not toxic and thus 
+    unlabeled are assigned to <strong><span style = "color:#bbbbbb;">Cluster -1</span></strong>.
   </p>
   <iframe src="assets/interactives/reddit_maps/reddit_map_cluster.html" width="100%" height = "630px" style="border: none;"></iframe>
   <p>
@@ -827,6 +863,41 @@ sections:
   </p>
   
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1552,9 +1623,6 @@ sections:
     <div class="case-common-section">
       
     <h3>Conclusion</h3>
-      <p>
-        <casegeneral>MISSING GENERAL CONCLUSION</casegeneral>
-      </p>
 
     <!-- Contenu spécifique : Conclusion -->
     <div class="case-specific-content" data-case="case1">
@@ -1656,7 +1724,7 @@ sections:
   <h3>Group contributions</h3>
   <ul>
     <li><strong>Aksel Akar</strong>: Propagation-style clustering, Repo management, Datastory </li>
-    <li><strong>Emilien Coudurier</strong>: Study cases (event identification and life-cycle analysis) </li>
+    <li><strong>Emilien Coudurier</strong>: Case studies (structure and analysis) </li>
     <li><strong>Nathan Tabet</strong>: Reddit embeddings mappings, community exploration, toxicity evolution</li>
     <li><strong>Cyprien Tordo</strong>: Metrics (toxicity scoring and binary classification), Website Design, Datastory </li>
     <li><strong>Cedric Zanou</strong>: Propagation clustering, Repo management, Datastory </li>
