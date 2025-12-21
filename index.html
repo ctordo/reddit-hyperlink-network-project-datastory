@@ -829,13 +829,49 @@ sections:
   <!-- 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 -->
   <!-- Contenu Case 1 -->
   <div id="case1" class="case-content">
-    <h3>Study Case 1: Political Subreddits</h3>
+    <h2>Study Case 1: Political Subreddits</h2>
     
-    <h4>Context and Selection</h4>
+    <h3>Time Window Identification</h3>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Political subreddits represent some of the most 
-      polarized communities on Reddit, with distinct ideological boundaries and high levels of inter-group conflict.
+      An interesting time window is selected based on the trends of interactions over the whole available time period (global). 
+      We argue that the trend of total source and total target interactions adds useful information in addition to a simple 
+      global toxic interaction trend. Indeed, this allows us to gather information about the dynamic of the focused group 
+      (mostly aggressor or victim interactions). They add key insights for time window selection, and will be verified later on.
     </p>
+
+    <div class="box-remark box-collapsible">
+    <div class="box-header">
+    <div>
+      <strong>Remark - </strong>This gives some insights about the associated class, shown in the figure here below:
+    </div>
+    <button class="box-toggle" aria-label="Toggle details"></button>
+    </div>
+  
+  <div class="box-content">
+  <img src="{{ '/assets/img/toxic_event_classes.png' | relative_url }}" alt="classes" class="center medium">
+  <ul>
+      <li>a) Single Victim, Multiple Prosecutors</li>
+      <li>b) Multiple Victims, Single Prosecutors </li>
+      <li>c) Multiple Victims, Multiple Prosecutors</li>
+      <li>d) Single Victim, Single Prosecutor</li>
+    </ul>
+  <p>
+    Red arrows show toxic interactions, blue arrows non-toxic interactions. 
+    High source interactions indicate multiple victims, and high target interactions indicate multiple prosecutors. Note that cases 
+    where two very active subreddits show both high interactions might be confused for c) or d) equally if no further analysis is done. 
+    Catalysts subreddits act indirectly on the event (not necessarily through toxic interactions), and are hard to identify. This is the 
+    main reason why neighbor subreddits are selected in addition to interacting subreddits, and we argue that these habitual neighbors 
+    are the most likely to act as catalysts. <strong>However, such complex interlinked social dynamics cannot be guaranteed to be perfectly 
+    modelled this way.</strong> As for observational studies where external undetected confounders have underlying effects, we cannot construct 
+    a causal analysis encapsulating every confounder with 100% certainty. Moreover, while every scenario may exist, we highlight that 
+    most of the toxic events happening in reddit tend to c). Note that prosecutors, victims and catalysts can be labelled as 
+    'participants' for generalization, and that roles are time-varying. Additionally, each interaction (toxic or not) can either have 
+    an exciting or attenuating effect, and are not represented in the schematic. They will be assessed in the last part (causal analysis), 
+    based on positive or negative correlation of time series.
+
+  </p>
+  </div>
+  </div>
     
     <iframe src="assets/interactives/studycases/CS1_1_daily_interactions_overall.html" width="100%" height = "440px" style="border: none;"></iframe>
     <iframe src="assets/interactives/studycases/CS1_2_daily_interactions_negative.html" width="100%" height = "440px" style="border: none;"></iframe>
@@ -855,53 +891,6 @@ sections:
 
 
 
-
-  <!-- 222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222 -->
-  <!-- Contenu Case 2 -->
-  <div id="case2" class="case-content">
-    <h3>Study Case 2: Gaming Communities</h3>
-    </p>
-      this is some text in study case 2, for the first time.
-    </p>
-  </div>
-
-  <!-- 333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333 -->
-  <!-- Contenu Case 3 -->
-  <div id="case3" class="case-content">
-    <h3>Study Case 3: News Aggregation</h3>
-
-    
-    </p>
-      this is some text in study case 3, for the first time.
-    </p>
-
-  </div>
-
-
-
-
-  <p>
-    NOW THAT'S SOME TEXT FOR ALL SECTIONS
-  </p>
-
-  <!-- 222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222 -->
-  <!-- Contenu Case 2 -->
-  <div id="case2" class="case-content">
-    </p>
-      and here we go again, for section 2
-    </p>
-  </div>
-
-  <!-- 333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333 -->
-  <!-- Contenu Case 3 -->
-  <div id="case3" class="case-content">
-
-    
-    </p>
-      and here we go again, for section 3
-    </p>
-
-  </div>
 
 
 </section>
