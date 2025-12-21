@@ -745,9 +745,9 @@ body {
 }
 
 .map-pin.active {
-  background-color: #1976d2;
+  background-color: #f0e91c;
   border-color: #ffffff;
-  box-shadow: 0 0 15px rgba(25, 118, 210, 0.8);
+  box-shadow: 0 0 15px rgba(210, 204, 25, 0.8);
 }
 
 /* Étiquettes des épingles */
